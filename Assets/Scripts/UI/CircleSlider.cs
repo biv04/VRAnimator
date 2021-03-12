@@ -10,6 +10,7 @@ public class CircleSlider : MonoBehaviour
     [SerializeField] Text valTxt;
 
     public HandGrabbing handR;
+    public GameObject player;
 
     Vector3 mousePos;
     Vector3 handPos;
@@ -25,6 +26,13 @@ public class CircleSlider : MonoBehaviour
 
         if (handR.isPinch == false)
             isDrag = false;
+
+        //Follow player
+        Debug.Log("Distance between circle and player: " + (this.gameObject.transform.position.z - player.transform.position.z));
+        if ((this.gameObject.transform.position.z - player.transform.position.z) > 400)
+        {
+            this.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z + 200);
+        }
     }
 
     public void onHandleDrag()
@@ -37,7 +45,7 @@ public class CircleSlider : MonoBehaviour
         if(angle<225 || angle >= 315)
         {
             Quaternion r = Quaternion.AngleAxis(angle + 135f, Vector3.forward);
-            handle.rotation = r;
+            handle.localRotation = r;
             angle = ((angle >= 315) ? (angle - 360) : angle) + 45;
             fill.fillAmount = 0.75f - (angle / 360f);
             valTxt.text = Mathf.Round((fill.fillAmount * 100) / 0.75f).ToString();

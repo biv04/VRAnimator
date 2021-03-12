@@ -15,11 +15,16 @@ public class controlanimation : MonoBehaviour
     public AnimationClip clip;
     public GameObject arm;
     float positionx, positiony, positionz;
-    float positionOriginalx, positionOriginaly, positionOriginalz;
+    //float prevPosX, prevPosY, prevPosZ;
+
+    public float[] prevPosx;
+    public float[] prevPosy;
+    public float[] prevPosz;
 
     public HandGrabbing handR;
 
     public Slider timeSlider;
+    public bool isMove;
     private int keyNum;
 
     public void Start()
@@ -34,6 +39,12 @@ public class controlanimation : MonoBehaviour
         Keyframe[] keysx = new Keyframe[]{};
         Keyframe[] keysy = new Keyframe[]{};
         Keyframe[] keysz = new Keyframe[]{};
+
+        prevPosx = new float[240] ;
+        prevPosy = new float[240] ;
+        prevPosz = new float[240] ;
+
+        Debug.Log("PrevPosList: " + prevPosx[0]);
 
         //keysx = new Keyframe[24]; keysy = new Keyframe[24]; keysz = new Keyframe[24];
 
@@ -53,9 +64,9 @@ public class controlanimation : MonoBehaviour
      Debug.Log("====================" + keysx[2].value);
       */
 
-        curvex = new AnimationCurve(keysx);
-        curvey = new AnimationCurve(keysy);
-        curvez = new AnimationCurve(keysz);
+        curvex = new AnimationCurve();
+        curvey = new AnimationCurve();
+        curvez = new AnimationCurve();
         clip.SetCurve("", typeof(Transform), "localPosition.x", curvex);
 
         clip.SetCurve("", typeof(Transform), "localPosition.y", curvey);
@@ -65,7 +76,7 @@ public class controlanimation : MonoBehaviour
         anim.AddClip(clip, clip.name);
        
 
-        Debug.Log("================" + curvex.keys[0].value);
+        //Debug.Log("================" + curvex.keys[0].value);
     }
 
 
@@ -73,25 +84,83 @@ public class controlanimation : MonoBehaviour
     {
         
         setkeyClick(keyNum);
-        Debug.Log("Frame: " + keyNum);
-        Debug.Log("CurveValue (X): "  + curvex.keys[keyNum].value + " " + curvey.keys[keyNum].value + " " + curvez.keys[keyNum].value);
-        
+        //Debug.Log("CurveValue (X): "  + curvex.keys[keyNum].value + " " + curvey.keys[keyNum].value + " " + curvez.keys[keyNum].value);
 
     }
 
     public void setkeySlider()
     {
-        keyNum = (int)timeSlider.value;
 
-            Vector3 tempPos = new Vector3(curvex.keys[keyNum].value, curvey.keys[keyNum].value, curvez.keys[keyNum].value);
+        keyNum = (int)timeSlider.value;
+        Vector3 tempPos = new Vector3();
+
+        // Check if there was a previous key, if not just add a key
+        if (keyNum < curvex.length)
+        {
+            Debug.Log("Please work");
+            tempPos = new Vector3(curvex.keys[keyNum].value, curvey.keys[keyNum].value, curvez.keys[keyNum].value);
             arm.transform.localPosition = tempPos;
-        Debug.Log("TemporaryCurvePos: " + tempPos);
+        }
+
+       // Debug.Log("TemporaryCurvePos: " + tempPos);
 
     }
 
     public void setkeyClick(int num)
     {
+        float time = num / 24f;
 
+
+        positionx = arm.transform.localPosition.x;
+        positiony = arm.transform.localPosition.y;
+        positionz = arm.transform.localPosition.z;
+
+        Debug.Log("Num: " + num);
+        // Debug.Log("ArmPosition: " + positionx);
+
+
+        Debug.Log("PrevPosList: " + prevPosx[0]);
+
+            //If position changed
+            if (prevPosx[num] != positionx || prevPosy[num] != positiony || prevPosz[num] != positionz)
+            {
+                //Add key if index does not exist
+                if (num >= curvex.length)
+                {
+                    curvex.AddKey(time, positionx);
+                    curvey.AddKey(time, positiony);
+                    curvez.AddKey(time, positionz);
+                    Debug.Log("Add Value: " + curvex.keys[num].value);
+
+                }
+
+
+                //Replace key if there's a key
+                else if (curvex.AddKey(curvex.keys[num]) == -1)
+                {
+                    curvex.RemoveKey(num);
+                    curvey.RemoveKey(num);
+                    curvez.RemoveKey(num);
+
+                    curvex.AddKey(time, positionx);
+                    curvey.AddKey(time, positiony);
+                    curvez.AddKey(time, positionz);
+                    Debug.Log("Arm Value: " + positionx);
+
+                    Debug.Log("Replaced Value: " + curvex.keys[num].value);
+
+
+                }
+            }
+
+
+        else
+        {
+            //  Debug.LogError("Index?" + curvex.AddKey(curvex.keys[0]));
+            Debug.Log("ELSEEEEEE");
+        }
+
+        /*
         positionx = arm.transform.localPosition.x;
         keysx[num].value = positionx;
 
@@ -106,16 +175,19 @@ public class controlanimation : MonoBehaviour
         //keysz[num] = new Keyframe((float)num, positionz);
         Debug.Log("KeySet " + keyNum);
 
+
+
+
         /*
         curve.keys[num] = new Keyframe((float)num, positionx);
         curve.keys[num] = new Keyframe((float)num, positiony);
         curve.keys[num] = new Keyframe((float)num, positionz);
-         */
-        
 
-        curvex = new AnimationCurve(keysx);
-        curvey = new AnimationCurve(keysy);
-        curvez = new AnimationCurve(keysz);
+        curvex.keys[num].value = positionx;
+            curvey.keys[num].value = positiony;
+            curvez.keys[num].value = positionz;
+        */
+
 
         clip.SetCurve("", typeof(Transform), "localPosition.x", curvex);
 
@@ -124,6 +196,17 @@ public class controlanimation : MonoBehaviour
         clip.SetCurve("", typeof(Transform), "localPosition.z", curvez);
 
         anim.AddClip(clip, clip.name);
+
+        prevPosx[num] = arm.transform.localPosition.x;
+        prevPosy[num] = arm.transform.localPosition.y;
+        prevPosz[num] = arm.transform.localPosition.z;
+
+        // Debug.Log("CurveLength: " + curvex.length);
+        // Debug.Log("Time: " + time);
+        // Debug.Log("Frame: " + keyNum);
+
+
+
     }
 
     public void setJoint(string name)
