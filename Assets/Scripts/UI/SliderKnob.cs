@@ -35,8 +35,16 @@ public class SliderKnob : MonoBehaviour
         frameNumTxt.text = timeSlider.value.ToString();
 
         if (isMove)
+        {
             MoveThis();
-        
+            controlanimation.isSet = false;
+        }
+
+        else
+        {
+            controlanimation.isSet = true;
+        }
+
 
 
         //Clamp
@@ -49,15 +57,15 @@ public class SliderKnob : MonoBehaviour
         if (handR.isPinch == false && isMove == true)
         {
             isMove = false;
-            controlanimation.setkeySlider();
         }
+
+        Debug.Log("isMove: " + isMove);
     }
 
     private void OnTriggerEnter(Collider other)
     {
        if( handR.isPinch == true)
         {
-            controlanimation.setkeySlider();
             indexFinger = other.gameObject;
             isMove = true;
             
@@ -79,10 +87,6 @@ public class SliderKnob : MonoBehaviour
     {
         float deltaX = indexFinger.transform.position.x - prevX;
         this.gameObject.transform.position = new Vector3(indexFinger.transform.position.x + deltaX, gameObject.transform.position.y, gameObject.transform.position.z);
-
-        
-
-
 
     }
 }

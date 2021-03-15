@@ -15,17 +15,16 @@ public class controlanimation : MonoBehaviour
     public AnimationClip clip;
     public GameObject arm;
     float positionx, positiony, positionz;
-    //float prevPosX, prevPosY, prevPosZ;
 
-    public float[] prevPosx;
-    public float[] prevPosy;
-    public float[] prevPosz;
-
+    Dictionary<int, float> prevPosx = new Dictionary<int, float>();
+    Dictionary<int, float> prevPosy = new Dictionary<int, float>();
+    Dictionary<int, float> prevPosz = new Dictionary<int, float>();
     public HandGrabbing handR;
 
     public Slider timeSlider;
-    public bool isMove;
+    public bool isSet;
     private int keyNum;
+
 
     public void Start()
     {
@@ -40,9 +39,9 @@ public class controlanimation : MonoBehaviour
         Keyframe[] keysy = new Keyframe[]{};
         Keyframe[] keysz = new Keyframe[]{};
 
-        prevPosx = new float[240] ;
-        prevPosy = new float[240] ;
-        prevPosz = new float[240] ;
+      //  prevPosx = new float[] {} ;
+       // prevPosy = new float[] {} ;
+       // prevPosz = new float[] {};
 
         Debug.Log("PrevPosList: " + prevPosx[0]);
 
@@ -82,26 +81,26 @@ public class controlanimation : MonoBehaviour
 
     private void Update()
     {
-        
-        setkeyClick(keyNum);
+        if (isSet)
+        {
+            setkeyClick(keyNum);
+
+        }
         //Debug.Log("CurveValue (X): "  + curvex.keys[keyNum].value + " " + curvey.keys[keyNum].value + " " + curvez.keys[keyNum].value);
 
     }
 
     public void setkeySlider()
     {
-
         keyNum = (int)timeSlider.value;
+        float time = keyNum / 24f;
+
         Vector3 tempPos = new Vector3();
 
-        // Check if there was a previous key, if not just add a key
-        if (keyNum < curvex.length)
-        {
-            Debug.Log("Please work");
-            tempPos = new Vector3(curvex.keys[keyNum].value, curvey.keys[keyNum].value, curvez.keys[keyNum].value);
-            arm.transform.localPosition = tempPos;
-        }
-
+        Debug.Log("Restore position");
+        tempPos = new Vector3(curvex.Evaluate(time), curvey.Evaluate(time), curvez.Evaluate(time));
+        arm.transform.localPosition = tempPos;
+       
        // Debug.Log("TemporaryCurvePos: " + tempPos);
 
     }
@@ -110,54 +109,60 @@ public class controlanimation : MonoBehaviour
     {
         float time = num / 24f;
 
-
+        // Save the current position
         positionx = arm.transform.localPosition.x;
         positiony = arm.transform.localPosition.y;
         positionz = arm.transform.localPosition.z;
 
-        Debug.Log("Num: " + num);
-        // Debug.Log("ArmPosition: " + positionx);
-
-
-        Debug.Log("PrevPosList: " + prevPosx[0]);
-
+ 
+        //If the current frame has a previous position
+        if (prevPosx.ContainsKey(num))
+        {
             //If position changed
             if (prevPosx[num] != positionx || prevPosy[num] != positiony || prevPosz[num] != positionz)
             {
-                //Add key if index does not exist
-                if (num >= curvex.length)
-                {
-                    curvex.AddKey(time, positionx);
-                    curvey.AddKey(time, positiony);
-                    curvez.AddKey(time, positionz);
-                    Debug.Log("Add Value: " + curvex.keys[num].value);
-
-                }
-
-
+                int CurrentCurveIndex = 0;
                 //Replace key if there's a key
-                else if (curvex.AddKey(curvex.keys[num]) == -1)
+                if (curvex.AddKey(time, positionx) == -1)
                 {
-                    curvex.RemoveKey(num);
-                    curvey.RemoveKey(num);
-                    curvez.RemoveKey(num);
+                    for(int i = 0; i < curvex.length; i++)
+                    {
+                        if (curvex.keys[i].time == time)
+                            CurrentCurveIndex = i;
+                    }
 
-                    curvex.AddKey(time, positionx);
-                    curvey.AddKey(time, positiony);
-                    curvez.AddKey(time, positionz);
-                    Debug.Log("Arm Value: " + positionx);
+                    curvex.RemoveKey(CurrentCurveIndex);
+                    curvey.RemoveKey(CurrentCurveIndex);
+                    curvez.RemoveKey(CurrentCurveIndex);
 
-                    Debug.Log("Replaced Value: " + curvex.keys[num].value);
-
+                    Debug.Log("Replace Key at Index " + CurrentCurveIndex);
 
                 }
-            }
 
+                //Add key
+                curvex.AddKey(time, positionx);
+                curvey.AddKey(time, positiony);
+                curvez.AddKey(time, positionz);
+
+                prevPosx.Remove(num);
+                prevPosy.Remove(num);
+                prevPosz.Remove(num);
+
+                prevPosx.Add(num, arm.transform.localPosition.x);
+                prevPosy.Add(num, arm.transform.localPosition.y);
+                prevPosz.Add(num, arm.transform.localPosition.z);
+                
+                Debug.Log("Add Key");
+
+            }
+        }
 
         else
         {
-            //  Debug.LogError("Index?" + curvex.AddKey(curvex.keys[0]));
-            Debug.Log("ELSEEEEEE");
+            prevPosx.Add(num, arm.transform.localPosition.x);
+            prevPosy.Add(num, arm.transform.localPosition.y);
+            prevPosz.Add(num, arm.transform.localPosition.z);
+            Debug.Log("Add to previous position");
         }
 
         /*
@@ -197,9 +202,16 @@ public class controlanimation : MonoBehaviour
 
         anim.AddClip(clip, clip.name);
 
-        prevPosx[num] = arm.transform.localPosition.x;
+        /*
+        Debug.Log("PrevX: " + prevPosx[num]);
+        Debug.Log("PrevY: " + prevPosy[num]);
+        Debug.Log("PrevZ: " + prevPosz[num]);
+
+
+        /*prevPosx[num] = arm.transform.localPosition.x;
         prevPosy[num] = arm.transform.localPosition.y;
-        prevPosz[num] = arm.transform.localPosition.z;
+        prevPosz[num] = arm.transform.localPosition.z;*/
+
 
         // Debug.Log("CurveLength: " + curvex.length);
         // Debug.Log("Time: " + time);
@@ -212,6 +224,11 @@ public class controlanimation : MonoBehaviour
     public void setJoint(string name)
     {
       
+    }
+
+    public void setFrame(int num)
+    {
+        keyNum = num;
     }
 
     /*

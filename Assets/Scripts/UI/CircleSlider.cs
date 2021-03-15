@@ -28,7 +28,7 @@ public class CircleSlider : MonoBehaviour
             isDrag = false;
 
         //Follow player
-        Debug.Log("Distance between circle and player: " + (this.gameObject.transform.position.z - player.transform.position.z));
+        //Debug.Log("Distance between circle and player: " + (this.gameObject.transform.position.z - player.transform.position.z));
         if ((this.gameObject.transform.position.z - player.transform.position.z) > 400)
         {
             this.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z + 200);

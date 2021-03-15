@@ -571,12 +571,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   clip: {fileID: 7400000, guid: cc6eee07cf712684cba052997a1e8a68, type: 2}
   arm: {fileID: 96676597}
-  prevPosx: []
-  prevPosy: []
-  prevPosz: []
   handR: {fileID: 0}
   timeSlider: {fileID: 0}
-  isMove: 0
+  isSet: 0
 --- !u!1 &104509684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,7 +2958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.808
+      value: -0.55
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11442,12 +11439,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   clip: {fileID: 7400000, guid: e0c257d158923c142a039e165c3e8181, type: 2}
   arm: {fileID: 96676597}
-  prevPosx: []
-  prevPosy: []
-  prevPosz: []
   handR: {fileID: 0}
   timeSlider: {fileID: 3773762085361780317}
-  isMove: 0
+  isSet: 0
 --- !u!4 &1838143725
 Transform:
   m_ObjectHideFlags: 0
@@ -14617,7 +14611,7 @@ MonoBehaviour:
   timeSlider: {fileID: 3773762085361780317}
   frameNumTxt: {fileID: 1873874860}
   handR: {fileID: 1582387817}
-  controlanimation: {fileID: 0}
+  controlanimation: {fileID: 1838143724}
 --- !u!224 &3773762085361780316
 RectTransform:
   m_ObjectHideFlags: 0
