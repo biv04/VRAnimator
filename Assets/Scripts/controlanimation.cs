@@ -121,10 +121,11 @@ public class controlanimation : MonoBehaviour
 
         for(int i = 0; i<joints.Capacity; i++)
         {
-            Debug.LogError("INSIDE FOR LOOP TO CPMARE");
+            //Debug.LogError("INSIDE FOR LOOP TO CPMARE");
+            
             if(joints[i].Name == arm.gameObject.name)
             {
-                Debug.LogError("THIS IS THE GRABBED [PART   " +joints[i].Name + "   " + arm.gameObject.name);
+                //Debug.LogError("THIS IS THE GRABBED [PART   " +joints[i].Name + "   " + arm.gameObject.name);
                 jointIndex = i;
             }
         }
@@ -309,4 +310,11 @@ public class controlanimation : MonoBehaviour
     //    Debug.LogError("This is the path: " + path);
 
     //}
+
+    public List<Joint> savedJoints()
+    {
+        return joints;
+    }
+
+ 
 }

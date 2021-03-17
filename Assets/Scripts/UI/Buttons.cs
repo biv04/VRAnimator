@@ -20,10 +20,14 @@ public class Buttons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isOn)
-            Canvas.SetActive(true);
-        else
-            Canvas.SetActive(false);
+        if (Canvas != null)
+        {
+            if (isOn)
+                Canvas.SetActive(true);
+            else
+                Canvas.SetActive(false);
+        }
+      
     }
 
 
