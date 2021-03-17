@@ -1,0 +1,84 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Joint 
+{
+    private string name;
+    private AnimationCurve curvex;
+    private AnimationCurve curvey;
+    private AnimationCurve curvez;
+    private string path;
+
+
+    public Joint(string _name)
+    {
+        this.name = _name;
+    }
+
+    public void CreateCurves()
+    {
+        curvex = new AnimationCurve();
+        curvey = new AnimationCurve();
+        curvez = new AnimationCurve();
+    }
+
+    public string Path
+    {
+        get
+        {
+            return path;
+        }
+        set
+        {
+            path = value;
+        }
+    }
+    public string Name
+    {
+        get
+        {
+            return name;
+        }
+        set
+        {
+            name = value;
+        }
+    }
+
+    public AnimationCurve CurveX
+    {
+        get
+        {
+            return curvex;
+        }
+        set
+        {
+            curvex = value;
+        }
+    }
+
+    public AnimationCurve CurveY
+    {
+        get
+        {
+            return curvey;
+        }
+        set
+        {
+            curvey = value;
+        }
+    }
+
+    public AnimationCurve CurveZ
+    {
+        get
+        {
+            return curvez;
+        }
+        set
+        {
+            curvez = value;
+        }
+    }
+}

@@ -418,12 +418,10 @@ GameObject:
   - component: {fileID: 96676600}
   - component: {fileID: 96676599}
   - component: {fileID: 96676602}
-  - component: {fileID: 96676604}
   - component: {fileID: 96676603}
-  - component: {fileID: 96676605}
   m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
+  m_Name: LeftArmJoint
+  m_TagString: joint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -510,7 +508,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96676597}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: e0c257d158923c142a039e165c3e8181, type: 2}
   m_Animations:
@@ -519,61 +517,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!95 &96676604
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96676597}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &96676605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96676597}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2274a3f2241f48a439d4b9e55a6e13d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 96676603}
-  curvex:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  curvey:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  curvez:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  clip: {fileID: 7400000, guid: cc6eee07cf712684cba052997a1e8a68, type: 2}
-  arm: {fileID: 96676597}
-  handR: {fileID: 0}
-  timeSlider: {fileID: 0}
-  isSet: 0
 --- !u!1 &104509684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,7 +2901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.55
+      value: -0.757
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3374,8 +3317,8 @@ GameObject:
   - component: {fileID: 581371653}
   - component: {fileID: 581371656}
   m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
+  m_Name: LeftLegJoint
+  m_TagString: joint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5145,6 +5088,7 @@ MonoBehaviour:
   other_hand: {fileID: 0}
   rotationOnly: 0
   isPinch: 0
+  selectedJoint: {fileID: 0}
 --- !u!114 &923800471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6807,8 +6751,8 @@ GameObject:
   - component: {fileID: 1226257659}
   - component: {fileID: 1226257662}
   m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
+  m_Name: RightLegJoint
+  m_TagString: joint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7849,9 +7793,10 @@ GameObject:
   - component: {fileID: 1374954408}
   - component: {fileID: 1374954406}
   - component: {fileID: 1374954409}
+  - component: {fileID: 1374954411}
   m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
+  m_Name: RightArmJoint
+  m_TagString: joint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7931,6 +7876,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lObject: {fileID: 2033249059}
+--- !u!111 &1374954411
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374954404}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 083c5da435078c34ba82f9b60327bd76, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 083c5da435078c34ba82f9b60327bd76, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1379292553
 GameObject:
   m_ObjectHideFlags: 0
@@ -8941,7 +8902,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460761492}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 106.379745, y: -88.91368, z: 321.2898}
+  m_LocalPosition: {x: 139.3, y: -88.91368, z: 321.2898}
   m_LocalScale: {x: 28.98873, y: 28.98873, z: 28.98873}
   m_Children: []
   m_Father: {fileID: 454594110}
@@ -9643,6 +9604,7 @@ MonoBehaviour:
   other_hand: {fileID: 923800475}
   rotationOnly: 0
   isPinch: 0
+  selectedJoint: {fileID: 0}
 --- !u!54 &1582387818
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10210,6 +10172,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793f66b16bbff56428d42ac75f0527f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &1647366034
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647366028}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 4d7e66a11c32e9649887f9cf9e303912, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 4d7e66a11c32e9649887f9cf9e303912, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!4 &1670487432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3864779363393544768, guid: e288b6c92dab3304d8777156dfe2be4b,
@@ -11418,30 +11396,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2274a3f2241f48a439d4b9e55a6e13d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 96676603}
-  curvex:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  curvey:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  curvez:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  clip: {fileID: 7400000, guid: e0c257d158923c142a039e165c3e8181, type: 2}
-  arm: {fileID: 96676597}
-  handR: {fileID: 0}
+  anim: {fileID: 1647366034}
+  clip: {fileID: 7400000, guid: 4d7e66a11c32e9649887f9cf9e303912, type: 2}
+  handR: {fileID: 1582387817}
   timeSlider: {fileID: 3773762085361780317}
   isSet: 0
+  GameObjectJoints:
+  - {fileID: 96676597}
+  - {fileID: 1374954404}
+  - {fileID: 1226257657}
+  - {fileID: 581371651}
 --- !u!4 &1838143725
 Transform:
   m_ObjectHideFlags: 0
