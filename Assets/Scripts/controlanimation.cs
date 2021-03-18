@@ -27,32 +27,32 @@ public class controlanimation : MonoBehaviour
 
     int jointIndex = 0;
     GameObject obj;
-   // private Joint LeftArmJoint, RightArmJoint, RightLegJoint, LeftLegJoint;;
+    // private Joint LeftArmJoint, RightArmJoint, RightLegJoint, LeftLegJoint;;
 
 
 
     public void Start()
     {
-      //   List<Joint> joints = new List<Joint>();
-        Joint LeftArmJoint = new Joint("LeftArmJoint");        
+        //   List<Joint> joints = new List<Joint>();
+        Joint LeftArmJoint = new Joint("LeftArmJoint");
         Joint RightArmJoint = new Joint("RightArmJoint");
         Joint RightLegJoint = new Joint("RightLegJoint");
         Joint LeftLegJoint = new Joint("LeftLegJoint");
-      //  Joint WaistJoint = new Joint("WaistJoint");
-      //  Joint NeckJoint = new Joint("NeckJoint");
-       
+        //  Joint WaistJoint = new Joint("WaistJoint");
+        //  Joint NeckJoint = new Joint("NeckJoint");
+
 
 
         joints.Add(LeftArmJoint);
         joints.Add(RightArmJoint);
         joints.Add(RightLegJoint);
         joints.Add(LeftLegJoint);
-       
+
         //joints.Add(WaistJoint);
         //joints.Add(NeckJoint);
 
 
-        for (int i=0; i<joints.Capacity; i++)
+        for (int i = 0; i < joints.Capacity; i++)
         {
             Debug.LogError("Inside Loop");
             //(GameObjectJoints[i], i);
@@ -82,32 +82,32 @@ public class controlanimation : MonoBehaviour
             //
             joints[i].Path = path;
 
-           // Debug.LogError("This is the path: " + path);
+            // Debug.LogError("This is the path: " + path);
 
             // end path
             joints[i].CreateCurves();
 
-            clip.SetCurve(joints[i].Path, typeof(Transform),  "localPosition.x", joints[i].CurveX);
+            clip.SetCurve(joints[i].Path, typeof(Transform), "localPosition.x", joints[i].CurveX);
 
             clip.SetCurve(joints[i].Path, typeof(Transform), "localPosition.y", joints[i].CurveY);
 
-            clip.SetCurve(joints[i].Path, typeof(Transform),  "localPosition.z", joints[i].CurveZ);
+            clip.SetCurve(joints[i].Path, typeof(Transform), "localPosition.z", joints[i].CurveZ);
         }
 
         clip.legacy = true;
 
 
 
-     
+
         // create a curve to move the GameObject and assign to the clip
         //AnimationCurve curvex = new AnimationCurve();
         //AnimationCurve curvey = new AnimationCurve();
         //AnimationCurve curvez = new AnimationCurve();
 
-       
+
 
         anim.AddClip(clip, clip.name);
-       
+
 
         //Debug.Log("================" + curvex.keys[0].value);
     }
@@ -119,11 +119,11 @@ public class controlanimation : MonoBehaviour
         //Debug.LogError("THIS IS THE NAME OF THE SELECTED JOINT " + arm);
 
 
-        for(int i = 0; i<joints.Capacity; i++)
+        for (int i = 0; i < joints.Capacity; i++)
         {
             //Debug.LogError("INSIDE FOR LOOP TO CPMARE");
-            
-            if(joints[i].Name == arm.gameObject.name)
+
+            if (joints[i].Name == arm.gameObject.name)
             {
                 //Debug.LogError("THIS IS THE GRABBED [PART   " +joints[i].Name + "   " + arm.gameObject.name);
                 jointIndex = i;
@@ -170,7 +170,7 @@ public class controlanimation : MonoBehaviour
 
         // Ines try end
 
-       // Debug.Log("TemporaryCurvePos: " + tempPos);
+        // Debug.Log("TemporaryCurvePos: " + tempPos);
 
     }
 
@@ -183,7 +183,7 @@ public class controlanimation : MonoBehaviour
         positiony = arm.transform.localPosition.y;
         positionz = arm.transform.localPosition.z;
 
- 
+
         //If the current frame has a previous position
         if (prevPosx.ContainsKey(num))
         {
@@ -194,7 +194,7 @@ public class controlanimation : MonoBehaviour
                 //Replace key if there's a key
                 if (joints[jointIndex].CurveX.AddKey(time, positionx) == -1)
                 {
-                    for(int i = 0; i < joints[jointIndex].CurveX.length; i++)
+                    for (int i = 0; i < joints[jointIndex].CurveX.length; i++)
                     {
                         if (joints[jointIndex].CurveX.keys[i].time == time)
                             CurrentCurveIndex = i;
@@ -220,7 +220,7 @@ public class controlanimation : MonoBehaviour
                 prevPosx.Add(num, positionx);
                 prevPosy.Add(num, positiony);
                 prevPosz.Add(num, positionz);
-                
+
                 Debug.Log("Add Key");
 
             }
@@ -258,7 +258,7 @@ public class controlanimation : MonoBehaviour
             // return path;
             joints[i].Path = path;
 
-          //  Debug.LogError("This is the path: " + path);
+            //  Debug.LogError("This is the path: " + path);
 
             // end path
 
@@ -276,7 +276,7 @@ public class controlanimation : MonoBehaviour
 
     public void setJoint(string name)
     {
-      
+
     }
 
     public void setFrame(int num)
@@ -286,9 +286,9 @@ public class controlanimation : MonoBehaviour
 
 
     public void play()
-    {       
+    {
         anim.Play(clip.name);
-       // Debug.Log(curvex.keys);
+        // Debug.Log(curvex.keys);
     }
 
     public void Stop()
@@ -316,5 +316,5 @@ public class controlanimation : MonoBehaviour
         return joints;
     }
 
- 
+
 }

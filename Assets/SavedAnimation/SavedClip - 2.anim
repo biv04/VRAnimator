@@ -17,7 +17,25 @@ AnimationClip:
   m_PositionCurves:
   - curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: -0.45039225, y: 0.9456978, z: -0.12647125}
+        inSlope: {x: 0.16229823, y: 2.8399446, z: 0.63500965}
+        outSlope: {x: 0.16229823, y: 2.8399446, z: 0.63500965}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.33333334
+        value: {x: -0.39629284, y: 1.892346, z: 0.08519864}
+        inSlope: {x: 0.16229823, y: 2.8399446, z: 0.63500965}
+        outSlope: {x: 0.16229823, y: 2.8399446, z: 0.63500965}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -38,7 +56,25 @@ AnimationClip:
     path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
   - curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: -0.6329067, y: 0.6285093, z: -0.015256905}
+        inSlope: {x: 1.4068692, y: -1.0745932, z: -0.34641844}
+        outSlope: {x: 1.4068692, y: -1.0745932, z: -0.34641844}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.33333334
+        value: {x: -0.16395028, y: 0.27031153, z: -0.13072972}
+        inSlope: {x: 1.4068692, y: -1.0745932, z: -0.34641844}
+        outSlope: {x: 1.4068692, y: -1.0745932, z: -0.34641844}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -59,7 +95,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

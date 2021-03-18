@@ -6,7 +6,8 @@ public class DecoButton : MonoBehaviour
 {
     //Prefabs
     public GameObject Prefabs;
-    private GameObject hand;
+    public GameObject grid;
+    public GameObject spawnPoint;
 
 
     bool isCreating;
@@ -23,9 +24,8 @@ public class DecoButton : MonoBehaviour
     {
         if (isCreating)
         {
-            GameObject newItem = Instantiate(Prefabs, hand.transform.position, Quaternion.identity);
+            GameObject newItem = Instantiate(Prefabs, spawnPoint.transform.position, Quaternion.identity);
             isCreating = false;
-            //newItem.transform.parent = gameObject.transform;
            
         } 
     }
@@ -40,8 +40,6 @@ public class DecoButton : MonoBehaviour
             Debug.Log("Initiate at HandPos");
 
             isCreating = true;
-            hand = other.gameObject;
-
         }
 
     }

@@ -11,7 +11,7 @@ public class PlaneControl : MonoBehaviour
 
     public HandGrabbing handGrabbingL, handGrabbingR;
     public GameObject handL, handR, cube;
-    bool isGrabbed, isColliding;
+    bool isGrabbed;
     float prevX, prevY, prevZ;
 
     void Start()
@@ -41,17 +41,19 @@ public class PlaneControl : MonoBehaviour
         lObject.transform.localRotation = sObject.transform.localRotation;
 
         if (handGrabbingR.isPinch == false)
+        {
             isGrabbed = false;
+            handGrabbingR.isGrabbed = false;
+        }
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if ( handGrabbingR.isPinch == true )
+        if ( handGrabbingR.isPinch == true && handGrabbingR.isGrabbed == false)
         {
             isGrabbed = true;
-            isColliding = true;
-
+            handGrabbingR.isGrabbed = true;
         }
 
         else

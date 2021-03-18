@@ -10,6 +10,8 @@ public class HandGrabbing : OVRGrabber
     private float pinchThreshhold = 0.85f;
     public bool rotationOnly;
     public bool isPinch;
+    public bool isGrabbed;
+
     public GameObject selectedJoint;
 
 
@@ -42,6 +44,8 @@ public class HandGrabbing : OVRGrabber
             //Scale environment object
             if (m_grabbedObj.tag == "EObj")
             {
+                isGrabbed = true;
+
                 //Debug.Log("DecoObj");
                float other_pinchStrength = other_hand.GetFingerPinchStrength(OVRHand.HandFinger.Index);
                if(other_pinchStrength> pinchThreshhold)
@@ -55,6 +59,8 @@ public class HandGrabbing : OVRGrabber
 
             if (m_grabbedObj.tag == "joint")
             {
+                isGrabbed = true;
+
                 Debug.Log("Grabbed Joint " + m_grabbedObj);
                 selectedJoint = m_grabbedObj.gameObject;
 
@@ -68,6 +74,7 @@ public class HandGrabbing : OVRGrabber
         else if(m_grabbedObj && !(pinchStrength > pinchThreshhold))
         {
             isPinch = false;
+            isGrabbed = false;
             GrabEnd();
         }
 
