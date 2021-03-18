@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Buttons : MonoBehaviour
 {
     public bool isOn;
-    public GameObject Canvas;
+    public GameObject[] Canvas;
     public Sprite defaultImg, hoverImg, hitImage;
 
     SpriteRenderer sr;
@@ -22,10 +22,19 @@ public class Buttons : MonoBehaviour
     {
         if (Canvas != null)
         {
-            if (isOn)
-                Canvas.SetActive(true);
+            if (!isOn)
+            {
+                for(int i = 0; i<Canvas.Length; i++)
+                {
+                    Canvas[i].SetActive(false);
+                }
+            }
+                
             else
-                Canvas.SetActive(false);
+                for (int i = 0; i < Canvas.Length; i++)
+                {
+                    Canvas[i].SetActive(true);
+                }
         }
       
     }
