@@ -6,12 +6,34 @@ public class CircleSliderHandle : MonoBehaviour
 {
     public CircleSlider circleSlider;
     public HandGrabbing handR;
+    public controlanimation controlanimation;
+
+    bool isMove;
+
+
+    private void Update()
+    {
+        if (isMove)
+        {
+            controlanimation.isSet = false;
+        }
+        else
+        {
+            controlanimation.isSet = true;
+        }
+
+        if(handR.isPinch == false && isMove == true)
+        {
+            isMove = false;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (handR.isPinch)
         {
             circleSlider.isDrag = true;
+            isMove = true;
 
         }
     }
@@ -21,6 +43,7 @@ public class CircleSliderHandle : MonoBehaviour
         if (handR.isPinch)
         {
             circleSlider.isDrag = true;
+            isMove = true;
         }
     }
 }

@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 5448007390765110926}
   m_Layer: 0
   m_Name: TreeAPrefab
-  m_TagString: Untagged
+  m_TagString: EObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LargeGrid: {fileID: 0}
   objPrefab: {fileID: 6634929475256213044}
+  handR: {fileID: 0}
 --- !u!114 &-6845373365614360481
 MonoBehaviour:
   m_ObjectHideFlags: 0

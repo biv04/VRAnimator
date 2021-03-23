@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -824842180650188002}
   m_Layer: 0
   m_Name: BoatPrefab
-  m_TagString: Untagged
+  m_TagString: EObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LargeGrid: {fileID: 0}
   objPrefab: {fileID: 3046626178335518133}
+  handR: {fileID: 0}
 --- !u!114 &97669783594863516
 MonoBehaviour:
   m_ObjectHideFlags: 0

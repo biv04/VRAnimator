@@ -11,7 +11,7 @@ public class PlaneControl : MonoBehaviour
 
     public HandGrabbing handGrabbingL, handGrabbingR;
     public GameObject handL, handR, cube;
-    bool isGrabbed;
+    bool GrabThis;
     float prevX, prevY, prevZ;
 
     void Start()
@@ -26,7 +26,7 @@ public class PlaneControl : MonoBehaviour
     {
 
         
-        if (isGrabbed)
+        if (GrabThis)
         {
             RotateThis();
             TranslateThis();
@@ -42,7 +42,7 @@ public class PlaneControl : MonoBehaviour
 
         if (handGrabbingR.isPinch == false)
         {
-            isGrabbed = false;
+            GrabThis = false;
             handGrabbingR.isGrabbed = false;
         }
 
@@ -52,7 +52,7 @@ public class PlaneControl : MonoBehaviour
     {
         if ( handGrabbingR.isPinch == true && handGrabbingR.isGrabbed == false)
         {
-            isGrabbed = true;
+            GrabThis = true;
             handGrabbingR.isGrabbed = true;
         }
 

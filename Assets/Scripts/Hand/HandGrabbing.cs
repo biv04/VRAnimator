@@ -45,15 +45,14 @@ public class HandGrabbing : OVRGrabber
             if (m_grabbedObj.tag == "EObj")
             {
                 isGrabbed = true;
-
                 //Debug.Log("DecoObj");
                float other_pinchStrength = other_hand.GetFingerPinchStrength(OVRHand.HandFinger.Index);
                if(other_pinchStrength> pinchThreshhold)
                 {
                    // Debug.Log("BothHand");
 
-                    float m_scale = (m_hand.transform.position - other_hand.transform.position).magnitude;
-                    m_grabbedObj.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
+                   // float m_scale = (m_hand.transform.position - other_hand.transform.position).magnitude;
+                    //m_grabbedObj.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
                 }
             }
 

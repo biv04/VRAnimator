@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 
 public class controlanimation : MonoBehaviour
@@ -19,9 +20,11 @@ public class controlanimation : MonoBehaviour
     public HandGrabbing handR;
     private string path;
 
-    public Slider timeSlider;
+    //public Slider timeSlider;
+    public CircleSlider CircleSlider;
+    public GameObject CircleSliderHandle;
     public bool isSet;
-    private int keyNum;
+    private int keyNum, prevKeyNum;
     public List<GameObject> GameObjectJoints;
     List<Joint> joints = new List<Joint>();
 
@@ -116,33 +119,37 @@ public class controlanimation : MonoBehaviour
     private void Update()
     {
         arm = handR.selectedJoint;
-        //Debug.LogError("THIS IS THE NAME OF THE SELECTED JOINT " + arm);
-
+        keyNum = CircleSlider.frameNum;
+        Debug.Log("KeyNum: " + keyNum);
+        Debug.Log("PrevKeyNum: " + prevKeyNum);
 
         for (int i = 0; i < joints.Capacity; i++)
         {
-            //Debug.LogError("INSIDE FOR LOOP TO CPMARE");
-
             if (joints[i].Name == arm.gameObject.name)
             {
-                //Debug.LogError("THIS IS THE GRABBED [PART   " +joints[i].Name + "   " + arm.gameObject.name);
                 jointIndex = i;
             }
         }
 
+        //Slider moved
+        if (keyNum != prevKeyNum)
+        {
+            Debug.Log("Slider moved");
+            setkeySlider();
+        }
 
         if (isSet)
         {
             setkeyClick(keyNum);
-
         }
-        //Debug.Log("CurveValue (X): "  + curvex.keys[keyNum].value + " " + curvey.keys[keyNum].value + " " + curvez.keys[keyNum].value);
+
+        prevKeyNum = keyNum;
 
     }
 
     public void setkeySlider()
     {
-        keyNum = (int)timeSlider.value;
+        //keyNum = (int)timeSlider.value;
         float time = keyNum / 24f;
 
         //Vector3 tempPos = new Vector3();

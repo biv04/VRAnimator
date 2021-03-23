@@ -206,8 +206,8 @@ GameObject:
   - component: {fileID: 8641998210674548787}
   - component: {fileID: 8895884257036480735}
   m_Layer: 0
-  m_Name: island_campfire
-  m_TagString: Untagged
+  m_Name: FireplacePrefab
+  m_TagString: EObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LargeGrid: {fileID: 0}
   objPrefab: {fileID: 3630753279083614749}
+  handR: {fileID: 0}
 --- !u!54 &8895884257036480735
 Rigidbody:
   m_ObjectHideFlags: 0

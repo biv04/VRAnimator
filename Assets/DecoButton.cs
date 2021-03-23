@@ -34,7 +34,6 @@ public class DecoButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggerd" + other.gameObject.name);
         if(other.gameObject.name == "Hand_IndexTip")
         {
             Debug.Log("Initiate at HandPos");
