@@ -6434,7 +6434,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862859676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 555}
+  m_LocalPosition: {x: 0, y: 0, z: 589}
   m_LocalScale: {x: 1.435, y: 1.435, z: 1.435}
   m_Children:
   - {fileID: 1506396792}
@@ -6447,7 +6447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1690, y: 949}
+  m_AnchoredPosition: {x: 1690, y: 551}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &862859678
@@ -6465,6 +6465,7 @@ MonoBehaviour:
   handle: {fileID: 1822244957}
   fill: {fileID: 944139563}
   valTxt: {fileID: 1506396793}
+  frameNum: 0
   handR: {fileID: 1582387817}
   player: {fileID: 1968278726}
   isDrag: 0
@@ -14645,7 +14646,7 @@ MonoBehaviour:
   anim: {fileID: 1647366034}
   clip: {fileID: 7400000, guid: fbd7561e2970edf41a10af19df84d0fd, type: 2}
   handR: {fileID: 1582387817}
-  SliderValue: {fileID: 1506396793}
+  CircleSlider: {fileID: 862859678}
   CircleSliderHandle: {fileID: 1822244956}
   isSet: 0
   GameObjectJoints:
