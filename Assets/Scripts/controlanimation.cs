@@ -118,6 +118,7 @@ public class controlanimation : MonoBehaviour
 
     private void Update()
     {
+
         arm = handR.selectedJoint;
         keyNum = CircleSlider.frameNum;
         Debug.Log("KeyNum: " + keyNum);

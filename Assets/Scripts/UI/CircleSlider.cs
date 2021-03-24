@@ -40,24 +40,24 @@ public class CircleSlider : MonoBehaviour
     {
         handPos = handR.transform.position;
         mousePos = Input.mousePosition;
-        Vector2 dir = handPos - handle.position;
+        Vector2 dir = mousePos - handle.position;
         //Debug.Log("OriginalDir" + dir);
         //dir = dir * 10;
         //Debug.Log("NewDir"+dir);
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         angle = (angle <= 0) ? (360 + angle) : angle;
-        if (angle < 270 || angle >= 360)
+        if (angle < 225 || angle >= 315)
         {
             Quaternion r = Quaternion.AngleAxis(angle + 135f, Vector3.forward);
 
             handle.localRotation = r;
 
-            angle = ((angle >= 270) ? (angle - 360) : angle) + 0;
-           // Debug.Log("ANGLE: " + angle);
+            angle = ((angle >= 225) ? (angle - 315) : angle) + 0;
+           Debug.Log("ANGLE: " + angle);
 
-            fill.fillAmount = 1f - (angle / 270);
-            frameNum = (int)Mathf.Round((fill.fillAmount * 24) / 1f);
+            fill.fillAmount = 1f - (angle / 225);
+            frameNum = (int)Mathf.Round((fill.fillAmount * 23) / 1f)+1;
             valTxt.text = frameNum.ToString();
         }
     }
