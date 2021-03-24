@@ -12,22 +12,26 @@ public class CubePlacer : MonoBehaviour
     public GameObject objPrefab;
     private GameObject child;
 
-    HandGrabbing handR;
+    public HandGrabbing handR;
     
-
+    Color originalColor;
    
 
     private void Awake()
     {
         grid = FindObjectOfType<Grid>();
         LargeGrid = FindObjectOfType<LargeGrid>();
-
+        originalColor = gameObject.GetComponent<Renderer>().material.color;
         handR = (HandGrabbing) GameObject.FindObjectOfType(typeof(HandGrabbing));
     }
 
     private void Update()
     {
+        if(gameObject.GetComponent<Renderer>().material.color == Color.red)
+        {
+            StartCoroutine(RestoreColor(0.5f));
 
+        }
         if (child)
         {
             Debug.Log("Has Child");
@@ -68,8 +72,14 @@ public class CubePlacer : MonoBehaviour
         // Delete on double tap
         else if (other.transform.gameObject.name == "Hand_IndexTip" && handR.isPinch == false)
         {
-            Debug.Log("Index Touched");
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
+            if (gameObject.GetComponent<Renderer>().material.color == Color.red)
+            {
+                Debug.Log("GameObject Delete: " + gameObject.name);
+                gameObject.SetActive(false);
+            }
+            else
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+
 
         }
 
@@ -83,6 +93,12 @@ public class CubePlacer : MonoBehaviour
         if (other.CompareTag("Indicator") )
             gameObject.transform.position = other.transform.position;
         */
+    }
+
+    IEnumerator RestoreColor(float second)
+    {
+        yield return new WaitForSeconds(second);
+        gameObject.GetComponent<Renderer>().material.color = originalColor;
     }
 
 

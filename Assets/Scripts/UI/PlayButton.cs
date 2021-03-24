@@ -8,7 +8,8 @@ public class PlayButton : MonoBehaviour
 {
     public controlanimation controlanimation;
     public VideoPlayer videoPlayer;
-    public Slider timeSlider;
+    //public Slider timeSlider;
+    public CircleSlider circleSlider;
     public GameObject btnPause;
     public GameObject btnPlay;
     bool isPlaying;
@@ -25,8 +26,8 @@ public class PlayButton : MonoBehaviour
     {
        if(isPlaying)
         {
-            if (timeSlider.value == 24) timeSlider.value = 0;
-            else timeSlider.value += 1;     
+            if (circleSlider.frameNum == 24) circleSlider.frameNum  = 0;
+            else circleSlider.frameNum  += 1;     
         }
     }
 

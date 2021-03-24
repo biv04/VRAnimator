@@ -17,91 +17,28 @@ AnimationClip:
   m_PositionCurves:
   - curve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: -0.38889706, y: 1.7700766, z: 0.19979343}
-        inSlope: {x: 0.029513981, y: -1.6056722, z: 0.019304229}
-        outSlope: {x: 0.029513981, y: -1.6056722, z: 0.019304229}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.5416667
-        value: {x: -0.37291032, y: 0.90033746, z: 0.21024989}
-        inSlope: {x: 0.029513981, y: -1.6056722, z: 0.019304229}
-        outSlope: {x: 0.029513981, y: -1.6056722, z: 0.019304229}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_L/LeftArmJoint
   - curve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 0.4316256, y: 1.0522623, z: 0.10125756}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_R/RightArmJoint
   - curve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 0.71751904, y: 0.69175667, z: 0.35406375}
-        inSlope: {x: -1.0330284, y: -0.9467776, z: -0.32600382}
-        outSlope: {x: -1.0330284, y: -0.9467776, z: -0.32600382}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.5416667
-        value: {x: 0.15796204, y: 0.17891881, z: 0.17747834}
-        inSlope: {x: -1.0330284, y: -0.9467776, z: -0.32600382}
-        outSlope: {x: -1.0330284, y: -0.9467776, z: -0.32600382}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
   - curve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: -0.62922907, y: 0.7283756, z: 0.13649336}
-        inSlope: {x: 0.67897, y: -0.5036459, z: 0.17784594}
-        outSlope: {x: 0.67897, y: -0.5036459, z: 0.17784594}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.5416667
-        value: {x: -0.26145366, y: 0.45556742, z: 0.23282658}
-        inSlope: {x: 0.67897, y: -0.5036459, z: 0.17784594}
-        outSlope: {x: 0.67897, y: -0.5036459, z: 0.17784594}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -122,7 +59,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5416667
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

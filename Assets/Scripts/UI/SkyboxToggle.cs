@@ -18,34 +18,30 @@ public class SkyboxToggle : MonoBehaviour
         RenderSettings.skybox = skyBox;
 		RenderSettings.skybox.SetFloat("_Exposure", exposure);
 
-    }
+			for (int i = 0; i < numOfChildren; i++)
+			{
+				GameObject child = environment.GetChild(i).gameObject;
+				for (int j = 0; j < child.GetComponent<MeshRenderer>().materials.Length; j++)
+				{
+					Color c = child.GetComponent<MeshRenderer>().materials[j].color;
+					c.a = 0;
+					child.GetComponent<MeshRenderer>().materials[j].color = c;
+				}
+
+
+			}
+
+
+	}
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("space")){
-			if(!isOn){
-				//Fade in
-				StartCoroutine(FadeIn());
-				StartCoroutine(ShowObjects());
-				isOn = true;
-			}
-		
-			else{
-				//Fade out
-				StartCoroutine(FadeOut());
-				StartCoroutine(HideObjects());
-				isOn = false;
-			
-			}
-			
-
-		}
-		
 		DynamicGI.UpdateEnvironment();
 
-    }
-	
+
+	}
+
 	IEnumerator FadeIn(){
 		for(int i = 0; i<7; i++){
 			yield return new WaitForSeconds(0.05f);
@@ -99,7 +95,29 @@ public class SkyboxToggle : MonoBehaviour
 
 		}
 	  }
-	  
-	 
+
+    private void OnTriggerEnter(Collider other)
+    {
+		if (!isOn)
+		{
+			//Fade in
+			StartCoroutine(FadeIn());
+			StartCoroutine(ShowObjects());
+			isOn = true;
+		}
+
+		else
+		{
+			//Fade out
+			StartCoroutine(FadeOut());
+			StartCoroutine(HideObjects());
+			isOn = false;
+
+		}
+
+
+    }
+
+
 
 }
