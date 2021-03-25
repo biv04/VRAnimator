@@ -229,6 +229,7 @@ public class controlanimation : MonoBehaviour
                 prevPosy.Add(num, positiony);
                 prevPosz.Add(num, positionz);
 
+				CircleSlider.HighlightKey(num);
                 Debug.Log("Add Key");
 
             }
