@@ -100,7 +100,7 @@ public class Joint
         }
         set
         {
-            curvex = value;
+            curverotx = value;
         }
     }
 
@@ -112,7 +112,7 @@ public class Joint
         }
         set
         {
-            curvey = value;
+            curveroty = value;
         }
     }
 
@@ -124,7 +124,7 @@ public class Joint
         }
         set
         {
-            curvez = value;
+            curverotz = value;
         }
     }
     // end rotation

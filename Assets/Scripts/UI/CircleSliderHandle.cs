@@ -7,13 +7,14 @@ public class CircleSliderHandle : MonoBehaviour
     public CircleSlider circleSlider;
     public HandGrabbing handR;
     public controlanimation controlanimation;
+    public PlayButton PlayButton;
 
     bool isMove;
 
 
     private void Update()
     {
-        if (isMove)
+        if (isMove || PlayButton.isPlaying)
         {
             controlanimation.isSet = false;
         }

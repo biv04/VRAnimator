@@ -12,7 +12,7 @@ public class PlayButton : MonoBehaviour
     public CircleSlider circleSlider;
     public GameObject btnPause;
     public GameObject btnPlay;
-    bool isPlaying;
+    public bool isPlaying;
     
     // Start is called before the first frame update
     void Start()
@@ -24,11 +24,14 @@ public class PlayButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(isPlaying)
+        if (isPlaying)
         {
-            if (circleSlider.frameNum == 24) circleSlider.frameNum  = 0;
-            else circleSlider.frameNum  += 1;     
+            if (circleSlider.frameNum == 24) circleSlider.frameNum = 0;
+            else circleSlider.frameNum += 1;
         }
+
+        else
+            controlanimation.isSet = true;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -506,8 +506,8 @@ GameObject:
   - component: {fileID: 29946429}
   - component: {fileID: 29946432}
   m_Layer: 0
-  m_Name: Hint
-  m_TagString: Untagged
+  m_Name: LeftKneeJoint
+  m_TagString: joint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3689,7 +3689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.522
+      value: -0.4861
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6438,7 +6438,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862859676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 589}
+  m_LocalPosition: {x: 0, y: 0, z: 551}
   m_LocalScale: {x: 1.435, y: 1.435, z: 1.435}
   m_Children:
   - {fileID: 1506396792}
@@ -6452,7 +6452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1690, y: 551}
+  m_AnchoredPosition: {x: 1690, y: 307}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &862859678
@@ -6558,6 +6558,7 @@ MonoBehaviour:
   circleSlider: {fileID: 0}
   btnPause: {fileID: 6220346846673681395}
   btnPlay: {fileID: 1549305212}
+  isPlaying: 0
 --- !u!114 &889293590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11606,6 +11607,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 906006049e382914eb7cb74043403bae, type: 2}
+    - target: {fileID: -3771802841883705670, guid: e288b6c92dab3304d8777156dfe2be4b,
+        type: 3}
+      propertyPath: m_Name
+      value: NeckJoint
+      objectReference: {fileID: 0}
+    - target: {fileID: -3771802841883705670, guid: e288b6c92dab3304d8777156dfe2be4b,
+        type: 3}
+      propertyPath: m_TagString
+      value: joint
+      objectReference: {fileID: 0}
+    - target: {fileID: -2090896267901410874, guid: e288b6c92dab3304d8777156dfe2be4b,
+        type: 3}
+      propertyPath: m_Name
+      value: SpineJoint
+      objectReference: {fileID: 0}
+    - target: {fileID: -2090896267901410874, guid: e288b6c92dab3304d8777156dfe2be4b,
+        type: 3}
+      propertyPath: m_TagString
+      value: joint
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e288b6c92dab3304d8777156dfe2be4b,
         type: 3}
       propertyPath: m_Name
@@ -11627,7 +11648,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1459394607}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.08178429, y: 0.10634496, z: 0.096547455}
@@ -12671,7 +12692,7 @@ MonoBehaviour:
   rotationOnly: 0
   isPinch: 0
   isGrabbed: 0
-  selectedJoint: {fileID: 96676597}
+  selectedJoint: {fileID: 0}
 --- !u!54 &1582387818
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13315,8 +13336,8 @@ GameObject:
   - component: {fileID: 1686963704}
   - component: {fileID: 1686963707}
   m_Layer: 0
-  m_Name: Hint
-  m_TagString: Untagged
+  m_Name: RightKneeJoint
+  m_TagString: joint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14189,6 +14210,7 @@ MonoBehaviour:
   circleSlider: {fileID: 862859678}
   btnPause: {fileID: 945548589}
   btnPlay: {fileID: 1911569741}
+  isPlaying: 0
 --- !u!114 &1784865965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14520,6 +14542,7 @@ MonoBehaviour:
   circleSlider: {fileID: 862859678}
   handR: {fileID: 1582387817}
   controlanimation: {fileID: 1838143724}
+  PlayButton: {fileID: 1784865964}
 --- !u!65 &1822244961
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14742,6 +14765,10 @@ MonoBehaviour:
   - {fileID: 1374954404}
   - {fileID: 1226257657}
   - {fileID: 581371651}
+  - {fileID: 2084070226}
+  - {fileID: 1459394607}
+  - {fileID: 29946427}
+  - {fileID: 1686963702}
 --- !u!4 &1838143725
 Transform:
   m_ObjectHideFlags: 0
@@ -17406,7 +17433,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084070226}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.05942083, y: 0.090871714, z: 0.06873147}
