@@ -79,7 +79,7 @@ public class CircleSlider : MonoBehaviour
     {
         handPos = handR.transform.position;
         mousePos = Input.mousePosition;
-        Vector2 dir = handPos - handle.position;
+        Vector2 dir = mousePos - handle.position;
         //Debug.Log("OriginalDir" + dir);
         //dir = dir * 10;
         //Debug.Log("NewDir"+dir);

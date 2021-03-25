@@ -17,11 +17,11 @@ public class AddCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.FindChild("Bones") && hasCollider == false)
+        if (transform.Find("Bones") && hasCollider == false)
         {
 
             Debug.Log("found");
-            Transform parent = transform.FindChild("Bones");
+            Transform parent = transform.Find("Bones");
 
             //var test = parent.Find("Hand_Start/Hand_ForearmStub");
             var target0 = parent.Find("Hand_Start/Hand_Thumb0/Hand_Thumb1/Hand_Thumb2/Hand_Thumb3/Hand_ThumbTip");

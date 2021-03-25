@@ -8,6 +8,10 @@ public class Joint
     private AnimationCurve curvex;
     private AnimationCurve curvey;
     private AnimationCurve curvez;
+    // rotation
+    private AnimationCurve curverotx;
+    private AnimationCurve curveroty;
+    private AnimationCurve curverotz;
     private string path;
 
 
@@ -21,6 +25,11 @@ public class Joint
         curvex = new AnimationCurve();
         curvey = new AnimationCurve();
         curvez = new AnimationCurve();
+
+        // rotation
+        curverotx = new AnimationCurve();
+        curveroty = new AnimationCurve();
+        curverotz = new AnimationCurve();
     }
 
     public string Path
@@ -81,4 +90,42 @@ public class Joint
             curvez = value;
         }
     }
+
+    //rotation
+    public AnimationCurve CurveRotX
+    {
+        get
+        {
+            return curverotx;
+        }
+        set
+        {
+            curvex = value;
+        }
+    }
+
+    public AnimationCurve CurveRotY
+    {
+        get
+        {
+            return curveroty;
+        }
+        set
+        {
+            curvey = value;
+        }
+    }
+
+    public AnimationCurve CurveRotZ
+    {
+        get
+        {
+            return curverotz;
+        }
+        set
+        {
+            curvez = value;
+        }
+    }
+    // end rotation
 }

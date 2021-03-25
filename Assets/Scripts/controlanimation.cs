@@ -11,11 +11,19 @@ public class controlanimation : MonoBehaviour
     public Animation anim;
     //public AnimationCurve curvex,curvey,curvez;
     public AnimationClip clip;
-    float positionx, positiony, positionz;
+    float positionx, positiony, positionz, rotationx, rotationy, rotationz;
 
     Dictionary<int, float> prevPosx = new Dictionary<int, float>();
     Dictionary<int, float> prevPosy = new Dictionary<int, float>();
     Dictionary<int, float> prevPosz = new Dictionary<int, float>();
+
+
+    // rotation //
+    Dictionary<int, float> prevRotx = new Dictionary<int, float>();
+    Dictionary<int, float> prevRoty = new Dictionary<int, float>();
+    Dictionary<int, float> prevRotz = new Dictionary<int, float>();
+    // end rotation //
+
     private GameObject arm;
     public HandGrabbing handR;
     private string path;
@@ -95,6 +103,14 @@ public class controlanimation : MonoBehaviour
             clip.SetCurve(joints[i].Path, typeof(Transform), "localPosition.y", joints[i].CurveY);
 
             clip.SetCurve(joints[i].Path, typeof(Transform), "localPosition.z", joints[i].CurveZ);
+
+            // start rotation
+            clip.SetCurve(joints[i].Path, typeof(Quaternion), "localRotation.x", joints[i].CurveRotX);
+
+            clip.SetCurve(joints[i].Path, typeof(Quaternion), "localRotation.y", joints[i].CurveRotY);
+
+            clip.SetCurve(joints[i].Path, typeof(Quaternion), "localRotation.z", joints[i].CurveRotZ);
+            // end rotation
         }
 
         clip.legacy = true;
@@ -168,12 +184,16 @@ public class controlanimation : MonoBehaviour
 
         {
             Vector3 tempPos = new Vector3();
+            Quaternion tempRot = new Quaternion();
 
             Debug.Log("Restore position");
 
             tempPos = new Vector3(joints[i].CurveX.Evaluate(time), joints[i].CurveY.Evaluate(time), joints[i].CurveZ.Evaluate(time));
-
+            //rotation
+            tempRot = new Quaternion(joints[i].CurveRotX.Evaluate(time), joints[i].CurveRotY.Evaluate(time), joints[i].CurveRotZ.Evaluate(time),0);
+            //end rotation
             GameObjectJoints[i].transform.localPosition = tempPos;
+            GameObjectJoints[i].transform.localRotation = tempRot;
         }
 
         // Ines try end
@@ -190,6 +210,10 @@ public class controlanimation : MonoBehaviour
         positionx = arm.transform.localPosition.x;
         positiony = arm.transform.localPosition.y;
         positionz = arm.transform.localPosition.z;
+        // Save the current rotation
+        rotationx = arm.transform.localRotation.x;
+        rotationy = arm.transform.localRotation.y;
+        rotationz = arm.transform.localRotation.z;
 
 
         //If the current frame has a previous position
@@ -212,6 +236,12 @@ public class controlanimation : MonoBehaviour
                     joints[jointIndex].CurveY.RemoveKey(CurrentCurveIndex);
                     joints[jointIndex].CurveZ.RemoveKey(CurrentCurveIndex);
 
+
+                    // rotation
+                    joints[jointIndex].CurveRotX.RemoveKey(CurrentCurveIndex);
+                    joints[jointIndex].CurveRotY.RemoveKey(CurrentCurveIndex);
+                    joints[jointIndex].CurveRotZ.RemoveKey(CurrentCurveIndex);
+
                     Debug.Log("Replace Key at Index " + CurrentCurveIndex);
 
                 }
@@ -221,15 +251,28 @@ public class controlanimation : MonoBehaviour
                 joints[jointIndex].CurveY.AddKey(time, positiony);
                 joints[jointIndex].CurveZ.AddKey(time, positionz);
 
+                //Add rotation key
+                joints[jointIndex].CurveRotX.AddKey(time, rotationx);
+                joints[jointIndex].CurveRotY.AddKey(time, rotationy);
+                joints[jointIndex].CurveRotZ.AddKey(time, rotationz);
+
                 prevPosx.Remove(num);
                 prevPosy.Remove(num);
                 prevPosz.Remove(num);
+                // rotation
+                prevRotx.Remove(num);
+                prevRoty.Remove(num);
+                prevRotz.Remove(num);
 
                 prevPosx.Add(num, positionx);
                 prevPosy.Add(num, positiony);
                 prevPosz.Add(num, positionz);
+                // rotation
+                prevRotx.Add(num, rotationx);
+                prevRoty.Add(num, rotationy);
+                prevRotz.Add(num, rotationz);
 
-				CircleSlider.HighlightKey(num);
+                CircleSlider.HighlightKey(num);
                 Debug.Log("Add Key");
 
             }
@@ -241,6 +284,9 @@ public class controlanimation : MonoBehaviour
             prevPosy.Add(num, positiony);
             prevPosz.Add(num, positionz);
             Debug.Log("Add to previous position");
+            prevRotx.Add(num, rotationx);
+            prevRoty.Add(num, rotationy);
+            prevRotz.Add(num, rotationz);
         }
 
 
@@ -276,6 +322,13 @@ public class controlanimation : MonoBehaviour
             clip.SetCurve(joints[i].Path, typeof(Transform), "localPosition.y", joints[i].CurveY);
 
             clip.SetCurve(joints[i].Path, typeof(Transform), "localPosition.z", joints[i].CurveZ);
+
+            //rotation
+            clip.SetCurve(joints[i].Path, typeof(Quaternion), "localRotation.x", joints[i].CurveRotX);
+
+            clip.SetCurve(joints[i].Path, typeof(Quaternion), "localRotation.y", joints[i].CurveRotY);
+
+            clip.SetCurve(joints[i].Path, typeof(Quaternion), "localRotation.z", joints[i].CurveRotZ);
         }
 
         anim.AddClip(clip, clip.name);
