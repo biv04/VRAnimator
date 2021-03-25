@@ -33,16 +33,21 @@ public class CircleSlider : MonoBehaviour
     private void Update()
     {
 		for(int i = frameNum; i<24; i++){
-			if(frameCubes[i].GetComponent<MeshRenderer>().material == HightlightMat){
-				 Debug.Log("There is a key at frame " + i);
+            Debug.LogError("Color: " + frameCubes[i].GetComponent<MeshRenderer>().material.color);
+            Debug.LogError("HighlightColor: " + HightlightMat.color);
+
+            if (frameCubes[i].GetComponent<MeshRenderer>().material.color  == HightlightMat.color)
+            {
+				 Debug.Log("PLEASEEEE WORKKKKKKKK " + i);
 			}
 			else
 				DefaultColor(i);
 				
 		}
+
 		for(int i = 0; i<=frameNum; i++){
 
-			if(frameCubes[i].GetComponent<MeshRenderer>().material == HightlightMat){
+			if(frameCubes[i].GetComponent<MeshRenderer>().material.color == HightlightMat.color){
 				Debug.Log("There is a key at frame " + i);
 			}
 			else
@@ -74,7 +79,7 @@ public class CircleSlider : MonoBehaviour
     {
         handPos = handR.transform.position;
         mousePos = Input.mousePosition;
-        Vector2 dir = mousePos - handle.position;
+        Vector2 dir = handPos - handle.position;
         //Debug.Log("OriginalDir" + dir);
         //dir = dir * 10;
         //Debug.Log("NewDir"+dir);
