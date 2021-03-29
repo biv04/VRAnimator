@@ -44,6 +44,9 @@ public class controlanimation : MonoBehaviour
 
     public void Start()
     {
+
+        clip.ClearCurves();
+
         //   List<Joint> joints = new List<Joint>();
         Joint LeftArmJoint = new Joint("LeftArmJoint");
         Joint RightArmJoint = new Joint("RightArmJoint");
@@ -227,7 +230,7 @@ public class controlanimation : MonoBehaviour
         rotationy = arm.transform.localEulerAngles.y;
         rotationz = arm.transform.localEulerAngles.z;
 
-        Debug.Log("LocalROtationX: " + rotationx);
+       // Debug.Log("LocalROtationX: " + rotationx);
         //If the current frame has a previous position
         if (prevPosx.ContainsKey(num) || prevRotx.ContainsKey(num))
         {
@@ -311,6 +314,91 @@ public class controlanimation : MonoBehaviour
         //clip.SetCurve("", typeof(Transform), arm.ToString() + " localPosition.z", curvez);
 
 
+        SetCurve();
+
+
+    }
+
+    public void setJoint(string name)
+    {
+
+    }
+
+    public void setFrame(int num)
+    {
+        keyNum = num;
+    }
+
+
+    public void play()
+    {
+        anim.Play(clip.name);
+        // Debug.Log(curvex.keys);
+    }
+
+    public void Stop()
+    {
+        Debug.Log("TODO: Stop Animation");
+    }
+
+    public void DeleteKey(int n)
+    {
+        float time = n / 24f;
+        int CurrentCurveIndex = 0;
+        
+            for (int j = 0; j < joints[0].CurveX.length; j++)
+            {
+                Debug.Log("CurveTime: " + joints[0].CurveX.keys[j].time + " Time: " + time);
+                if (joints[0].CurveX.keys[j].time == time)
+                    CurrentCurveIndex = j;
+            }
+
+            Debug.Log("CurveIndex: " + CurrentCurveIndex + " PassedInValue: " + n); 
+            joints[0].CurveX.RemoveKey(CurrentCurveIndex);
+            joints[0].CurveY.RemoveKey(CurrentCurveIndex);
+            joints[0].CurveZ.RemoveKey(CurrentCurveIndex);
+
+
+            // rotation
+            joints[0].CurveRotX.RemoveKey(CurrentCurveIndex);
+            joints[0].CurveRotY.RemoveKey(CurrentCurveIndex);
+            joints[0].CurveRotZ.RemoveKey(CurrentCurveIndex);
+
+            Debug.Log("After deletion: " + joints[0].CurveX.length);
+
+
+
+
+        int i = 0;
+
+        obj = GameObjectJoints[i];
+
+        string path = "/" + obj.name;
+        while (obj.transform.parent != null)
+        {
+            obj = obj.transform.parent.gameObject;
+            path = "/" + obj.name + path;
+        }
+        // return path;
+        joints[i].Path = path;
+
+        clip.ClearCurves();
+        SetCurve();
+
+    }
+
+    public void CopyKey()
+    {
+
+    }
+
+    public void PasteKey()
+    {
+
+    }
+
+    void SetCurve()
+    {
         for (int i = 0; i < joints.Capacity; i++)
         {
             //GetGameObjectPath(GameObjectJoints[i], i);
@@ -346,30 +434,6 @@ public class controlanimation : MonoBehaviour
         }
 
         anim.AddClip(clip, clip.name);
-
-
-    }
-
-    public void setJoint(string name)
-    {
-
-    }
-
-    public void setFrame(int num)
-    {
-        keyNum = num;
-    }
-
-
-    public void play()
-    {
-        anim.Play(clip.name);
-        // Debug.Log(curvex.keys);
-    }
-
-    public void Stop()
-    {
-        Debug.Log("TODO: Stop Animation");
     }
 
     //public void GetGameObjectPath(GameObject obj, int index)

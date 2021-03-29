@@ -36,7 +36,7 @@ public class CircleSlider : MonoBehaviour
 
             if (frameCubes[i].GetComponent<MeshRenderer>().material.color  == HightlightMat.color)
             {
-				 Debug.Log("PLEASEEEE WORKKKKKKKK " + i);
+				// Debug.Log("PLEASEEEE WORKKKKKKKK " + i);
 			}
 			else
 				DefaultColor(i);
@@ -46,7 +46,7 @@ public class CircleSlider : MonoBehaviour
 		for(int i = 0; i<=frameNum; i++){
 
 			if(frameCubes[i].GetComponent<MeshRenderer>().material.color == HightlightMat.color){
-				Debug.Log("There is a key at frame " + i);
+				//Debug.Log("There is a key at frame " + i);
 			}
 			else
 				HighlightFrame(i);
@@ -108,7 +108,7 @@ public class CircleSlider : MonoBehaviour
 
             /* Distance around the circle */
             var radians = 1.5f * Mathf.PI / num * i - Mathf.PI/4;
-			Debug.Log("FrameNum: " + i + "Rad: " + radians);
+			//Debug.Log("FrameNum: " + i + "Rad: " + radians);
 			 if(i == 12){
 
 				radians = radians + 0.01f;
@@ -143,7 +143,7 @@ public class CircleSlider : MonoBehaviour
 
     private void HighlightFrame(int frameNum){
 		frameCubes[frameNum].GetComponent<MeshRenderer>().material = FillMat;
-		Debug.Log("Set Fill color for " + frameCubes[frameNum]);
+		//Debug.Log("Set Fill color for " + frameCubes[frameNum]);
 	}
 	
 	public void HighlightKey(int frameNum){

@@ -7,7 +7,11 @@ public class KeyframeMenu : MonoBehaviour
     public GameObject frameCanvas;
     public GameObject keyCanvas;
     public Material highlightMat;
+    public GameObject circleSlider;
 
+    GameObject selectedFrame;
+    public int keyNum;
+    
     bool isOn;
     // Start is called before the first frame update
     void Start()
@@ -21,17 +25,23 @@ public class KeyframeMenu : MonoBehaviour
     {
         if (isOn)
         {
+            keyNum = int.Parse(selectedFrame.name.Substring(5)) ;
+            Vector3 dir = (selectedFrame.transform.position - circleSlider.transform.position).normalized;
             //If there is a key there, display keycanvas
-            if(gameObject.GetComponent<MeshRenderer>().material.color == highlightMat.color)
+            if(selectedFrame.GetComponent<MeshRenderer>().material.color == highlightMat.color)
             {
                 frameCanvas.SetActive(false);
                 keyCanvas.SetActive(true);
+                keyCanvas.transform.position = circleSlider.transform.position + dir * 0.2f;
             }
 
             else
             {
+
                 frameCanvas.SetActive(true);
                 keyCanvas.SetActive(false);
+                frameCanvas.transform.position = circleSlider.transform.position + dir * 0.2f;
+
             }
         }
 
@@ -40,13 +50,12 @@ public class KeyframeMenu : MonoBehaviour
             frameCanvas.SetActive(false);
             keyCanvas.SetActive(false);
         }
-    }
+    } 
 
-    private void OnTriggerEnter(Collider other)
+    public void CollisionDetected(GameObject child)
     {
-        if(other.gameObject.name == "Hand_IndexTip")
-        {
-            isOn = !isOn;
-        }
+        isOn = true;
+        selectedFrame = child;
+        Debug.Log("Collided With Child: " + child.name);
     }
 }
