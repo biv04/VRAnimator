@@ -32,7 +32,7 @@ public class KeyframeMenu : MonoBehaviour
             {
                 frameCanvas.SetActive(false);
                 keyCanvas.SetActive(true);
-                keyCanvas.transform.position = circleSlider.transform.position + dir * 0.2f;
+                keyCanvas.transform.position = circleSlider.transform.position + dir * 0.16f;
             }
 
             else
@@ -40,7 +40,7 @@ public class KeyframeMenu : MonoBehaviour
 
                 frameCanvas.SetActive(true);
                 keyCanvas.SetActive(false);
-                frameCanvas.transform.position = circleSlider.transform.position + dir * 0.2f;
+                frameCanvas.transform.position = circleSlider.transform.position + dir * 0.12f;
 
             }
         }
@@ -57,5 +57,10 @@ public class KeyframeMenu : MonoBehaviour
         isOn = true;
         selectedFrame = child;
         Debug.Log("Collided With Child: " + child.name);
+    }
+
+    public void TurnOffCanvas()
+    {
+        isOn = false;
     }
 }

@@ -21,6 +21,8 @@ public class KeyframeButtons : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+
         switch (buttonNum)
         {
             //Delete Keyframe
@@ -29,7 +31,21 @@ public class KeyframeButtons : MonoBehaviour
                 controlanimation.DeleteKey(keyframeMenu.keyNum);
                 break;
 
+            //Copy Keyframe
+            case 1:
+                Debug.LogError("Copy Keyframe");
+                controlanimation.CopyKey(keyframeMenu.keyNum);
+                break;
+
+            //Paste Keyframe
+            case 2:
+                Debug.LogError("Paste Keyframe");
+                controlanimation.PasteKey(keyframeMenu.keyNum);
+                break;
 
         }
+        keyframeMenu.frameCanvas.SetActive(false);
+        keyframeMenu.keyCanvas.SetActive(false);
+        keyframeMenu.TurnOffCanvas();
     }
 }

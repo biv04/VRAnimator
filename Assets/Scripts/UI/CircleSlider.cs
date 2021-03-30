@@ -7,7 +7,7 @@ public class CircleSlider : MonoBehaviour
 {
     [SerializeField] Transform handle;
     [SerializeField] Image fill;
-    [SerializeField] Text valTxt;
+    [SerializeField] Text valTxt, jointName;
     public int frameNum;
 
     public HandGrabbing handR;
@@ -153,4 +153,19 @@ public class CircleSlider : MonoBehaviour
 	public void DefaultColor(int frameNum){
 		frameCubes[frameNum].GetComponent<MeshRenderer>().material = DefaultMat;
 	}
+
+    public Color GetColor(int frameNum)
+    {
+        return frameCubes[frameNum].GetComponent<MeshRenderer>().material.color;
+    }
+
+    public Color HighLightColor()
+    {
+        return HightlightMat.color;
+    }
+
+    public void SetJointName(string name)
+    {
+        jointName.text = name;
+    }
 }

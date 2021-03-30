@@ -41,6 +41,7 @@ public class Joint
 
     }
 
+
     public string Path
     {
         get
@@ -136,5 +137,7 @@ public class Joint
             curverotz = value;
         }
     }
+
+    
     // end rotation
 }

@@ -12,6 +12,7 @@ public class controlanimation : MonoBehaviour
     //public AnimationCurve curvex,curvey,curvez;
     public AnimationClip clip;
     float positionx, positiony, positionz, rotationx, rotationy, rotationz;
+    public Vector3 copiedPos, copiedRot;
 
     Dictionary<int, float> prevPosx = new Dictionary<int, float>();
     Dictionary<int, float> prevPosy = new Dictionary<int, float>();
@@ -26,6 +27,7 @@ public class controlanimation : MonoBehaviour
 
     private GameObject arm;
     public HandGrabbing handR;
+    public Material defaultMat;
     private string path;
 
     //public Slider timeSlider;
@@ -35,6 +37,9 @@ public class controlanimation : MonoBehaviour
     private int keyNum, prevKeyNum;
     public List<GameObject> GameObjectJoints;
     List<Joint> joints = new List<Joint>();
+    List<CircleSlider> sliders = new List<CircleSlider>();
+    Joint prevJoint = new Joint("PrevJoint");
+
 
     int jointIndex = 0;
     GameObject obj;
@@ -71,11 +76,20 @@ public class controlanimation : MonoBehaviour
         joints.Add(SpineJoint);
         joints.Add(LeftKneeJoint);
         joints.Add(RightKneeJoint);
+        
 
+        /*
+        for(int i = 0; i<joints.Capacity; i ++)
+        {
+            CircleSlider circleSlider = new CircleSlider();
+            sliders.Add(circleSlider);
+
+        }
+        */
         //joints.Add(WaistJoint);
         //joints.Add(NeckJoint);
 
-        
+
         for (int i = 0; i < joints.Capacity; i++)
         {
             Debug.LogError("Inside Loop");
@@ -150,29 +164,29 @@ public class controlanimation : MonoBehaviour
 
         arm = handR.selectedJoint;
         keyNum = CircleSlider.frameNum;
-        //SetColor();
 
         for (int i = 0; i < joints.Capacity; i++)
         {
             if (joints[i].Name == arm.gameObject.name)
             {
                 jointIndex = i;
+                GameObjectJoints[i].GetComponentInChildren<MeshRenderer>().material.color = Color.cyan;
+                CircleSlider.SetJointName(joints[jointIndex].Name);
             }
+
+            else
+                GameObjectJoints[i].GetComponentInChildren<MeshRenderer>().material = defaultMat;
         }
 
         //Slider moved
         if (keyNum != prevKeyNum)
-        {
-            Debug.Log("Slider moved");
             setkeySlider();
-        }
 
         if (isSet)
-        {
             setkeyClick(keyNum);
-        }
 
         prevKeyNum = keyNum;
+        SetColor(joints[jointIndex]);
 
     }
 
@@ -229,7 +243,6 @@ public class controlanimation : MonoBehaviour
         rotationy = arm.transform.localEulerAngles.y;
         rotationz = arm.transform.localEulerAngles.z;
 
-       // Debug.Log("LocalROtationX: " + rotationx);
         //If the current frame has a previous position
         if (prevPosx.ContainsKey(num) || prevRotx.ContainsKey(num))
         {
@@ -237,59 +250,11 @@ public class controlanimation : MonoBehaviour
             if (prevPosx[num] != positionx || prevPosy[num] != positiony || prevPosz[num] != positionz
                 || prevRotx[num] != rotationx || prevRoty[num] != rotationy || prevRotz[num] != rotationz)
             {
-                int CurrentCurveIndex = 0;
                 //Replace key if there's a key
                 if (joints[jointIndex].CurveX.AddKey(time, positionx) == -1)
-                {
-                    for (int i = 0; i < joints[jointIndex].CurveX.length; i++)
-                    {
-                        if (joints[jointIndex].CurveX.keys[i].time == time)
-                            CurrentCurveIndex = i;
-                    }
+                    ReplaceKey(time);
 
-                    joints[jointIndex].CurveX.RemoveKey(CurrentCurveIndex);
-                    joints[jointIndex].CurveY.RemoveKey(CurrentCurveIndex);
-                    joints[jointIndex].CurveZ.RemoveKey(CurrentCurveIndex);
-
-
-                    // rotation
-                    joints[jointIndex].CurveRotX.RemoveKey(CurrentCurveIndex);
-                    joints[jointIndex].CurveRotY.RemoveKey(CurrentCurveIndex);
-                    joints[jointIndex].CurveRotZ.RemoveKey(CurrentCurveIndex);
-
-                    Debug.Log("Replace Key at Index " + CurrentCurveIndex);
-
-                }
-
-                //Add key
-                joints[jointIndex].CurveX.AddKey(time, positionx);
-                joints[jointIndex].CurveY.AddKey(time, positiony);
-                joints[jointIndex].CurveZ.AddKey(time, positionz);
-
-                //Add rotation key
-                joints[jointIndex].CurveRotX.AddKey(time, rotationx);
-                joints[jointIndex].CurveRotY.AddKey(time, rotationy);
-                joints[jointIndex].CurveRotZ.AddKey(time, rotationz);
-
-                prevPosx.Remove(num);
-                prevPosy.Remove(num);
-                prevPosz.Remove(num);
-                // rotation
-                prevRotx.Remove(num);
-                prevRoty.Remove(num);
-                prevRotz.Remove(num);
-
-                prevPosx.Add(num, positionx);
-                prevPosy.Add(num, positiony);
-                prevPosz.Add(num, positionz);
-                // rotation
-                prevRotx.Add(num, rotationx);
-                prevRoty.Add(num, rotationy);
-                prevRotz.Add(num, rotationz);
-
-                CircleSlider.HighlightKey(num);
-                Debug.Log("Add Key");
-                //Debug.LogError("Local Rotation: " + joints[jointIndex].CurveRotX.Evaluate(time));
+                AddKey(num, new Vector3(positionx, positiony, positionz), new Vector3(rotationx, rotationy, rotationz));
 
             }
         }
@@ -299,18 +264,10 @@ public class controlanimation : MonoBehaviour
             prevPosx.Add(num, positionx);
             prevPosy.Add(num, positiony);
             prevPosz.Add(num, positionz);
-            Debug.Log("Add to previous position");
             prevRotx.Add(num, rotationx);
             prevRoty.Add(num, rotationy);
             prevRotz.Add(num, rotationz);
         }
-
-
-        //clip.SetCurve("", typeof(Transform), arm.ToString() + " localPosition.x", curvex);
-
-        //clip.SetCurve("", typeof(Transform), arm.ToString() + " localPosition.y", curvey);
-
-        //clip.SetCurve("", typeof(Transform), arm.ToString() + " localPosition.z", curvez);
 
 
         SetCurve();
@@ -345,31 +302,26 @@ public class controlanimation : MonoBehaviour
         float time = n / 24f;
         int CurrentCurveIndex = 0;
         
-        for(int i = 0; i<joints.Capacity-1; i++)
-        {
-            for (int j = 0; j < joints[i].CurveX.length; j++)
+            for (int j = 0; j < joints[jointIndex].CurveX.length; j++)
             {
-                Debug.Log("CurveTime: " + joints[i].CurveX.keys[j].time + " Time: " + time);
-                if (joints[i].CurveX.keys[j].time == time)
+                Debug.Log("CurveTime: " + joints[jointIndex].CurveX.keys[j].time + " Time: " + time);
+                if (joints[jointIndex].CurveX.keys[j].time == time)
                     CurrentCurveIndex = j;
             }
 
-            if (joints[i].CurveX.AddKey(time, positionx) == -1 || joints[i].CurveY.AddKey(time, positionx)==-1 || joints[i].CurveZ.AddKey(time, positionx)==-1 ||
-                joints[i].CurveRotX.AddKey(time, positionx) ==-1 || joints[i].CurveRotY.AddKey(time, positionx)==-1  || joints[i].CurveRotZ.AddKey(time, positionx)==-1 ) continue;
-            Debug.Log("CurveIndex: " + CurrentCurveIndex + " PassedInValue: " + n);
-            joints[i].CurveX.RemoveKey(CurrentCurveIndex);
-            joints[i].CurveY.RemoveKey(CurrentCurveIndex);
-            joints[i].CurveZ.RemoveKey(CurrentCurveIndex);
+                Debug.Log("CurveIndex: " + CurrentCurveIndex + " PassedInValue: " + n);
+                joints[jointIndex].CurveX.RemoveKey(CurrentCurveIndex);
+                joints[jointIndex].CurveY.RemoveKey(CurrentCurveIndex);
+                joints[jointIndex].CurveZ.RemoveKey(CurrentCurveIndex);
 
 
-            // rotation
-            joints[i].CurveRotX.RemoveKey(CurrentCurveIndex);
-            joints[i].CurveRotY.RemoveKey(CurrentCurveIndex);
-            joints[i].CurveRotZ.RemoveKey(CurrentCurveIndex);
+                // rotation
+                joints[jointIndex].CurveRotX.RemoveKey(CurrentCurveIndex);
+                joints[jointIndex].CurveRotY.RemoveKey(CurrentCurveIndex);
+                joints[jointIndex].CurveRotZ.RemoveKey(CurrentCurveIndex);
 
-            Debug.Log("After deletion: " + joints[0].CurveX.length);
-        }
-           
+                Debug.Log("After deletion: " + joints[jointIndex].CurveX.length);
+      
 
         CircleSlider.DefaultColor(n);
         clip.ClearCurves();
@@ -380,11 +332,15 @@ public class controlanimation : MonoBehaviour
     public void CopyKey(int n)
     {
         float time = n / 24f;
-
+        copiedPos = new Vector3(joints[jointIndex].CurveX.Evaluate(time), joints[jointIndex].CurveY.Evaluate(time), joints[jointIndex].CurveZ.Evaluate(time));
+        copiedRot = new Vector3(joints[jointIndex].CurveRotX.Evaluate(time), joints[jointIndex].CurveRotY.Evaluate(time), joints[jointIndex].CurveRotZ.Evaluate(time));
     }
 
-    public void PasteKey()
+    public void PasteKey(int n)
     {
+        float time = n / 24f;
+        AddKey(n, copiedPos, copiedRot);
+        SetCurve();
 
     }
 
@@ -427,27 +383,94 @@ public class controlanimation : MonoBehaviour
         anim.AddClip(clip, clip.name);
     }
 
+    void ReplaceKey(float time)
+    {
+        int CurrentCurveIndex = 0;
+
+        for (int i = 0; i < joints[jointIndex].CurveX.length; i++)
+        {
+            if (joints[jointIndex].CurveX.keys[i].time == time)
+                CurrentCurveIndex = i;
+        }
+
+        joints[jointIndex].CurveX.RemoveKey(CurrentCurveIndex);
+        joints[jointIndex].CurveY.RemoveKey(CurrentCurveIndex);
+        joints[jointIndex].CurveZ.RemoveKey(CurrentCurveIndex);
+
+
+        // rotation
+        joints[jointIndex].CurveRotX.RemoveKey(CurrentCurveIndex);
+        joints[jointIndex].CurveRotY.RemoveKey(CurrentCurveIndex);
+        joints[jointIndex].CurveRotZ.RemoveKey(CurrentCurveIndex);
+
+        Debug.Log("Replace Key at Index " + CurrentCurveIndex);
+    }
+
+    void AddKey( int num, Vector3 Pos, Vector3 Rot)
+    {
+        float time = num / 24f;
+        //Add key
+        joints[jointIndex].CurveX.AddKey(time, Pos.x);
+        joints[jointIndex].CurveY.AddKey(time, Pos.y);
+        joints[jointIndex].CurveZ.AddKey(time, Pos.z);
+
+        //Add rotation key
+        joints[jointIndex].CurveRotX.AddKey(time, Rot.x);
+        joints[jointIndex].CurveRotY.AddKey(time, Rot.y);
+        joints[jointIndex].CurveRotZ.AddKey(time, Rot.z);
+
+        prevPosx.Remove(num);
+        prevPosy.Remove(num);
+        prevPosz.Remove(num);
+        // rotation
+        prevRotx.Remove(num);
+        prevRoty.Remove(num);
+        prevRotz.Remove(num);
+
+        prevPosx.Add(num, Pos.x);
+        prevPosy.Add(num, Pos.y);
+        prevPosz.Add(num, Pos.z);
+        // rotation
+        prevRotx.Add(num, Rot.x);
+        prevRoty.Add(num, Rot.y);
+        prevRotz.Add(num, Rot.z);
+
+    }
+
 
     public List<Joint> savedJoints()
     {
         return joints;
     }
 
-    /*
-    void SetColor()
+    
+    void SetColor(Joint selectedJoint)
     {
+        if (prevJoint == null)
+            prevJoint = selectedJoint;
+
         //Loop through all the frames, set color to yellow if there is a key on the curve
         for(int i = 0; i< 24; i++)
         {
-            float time = i / 24;
-            if(joints[jointIndex].CurveX.AddKey(time, positionx) == -1)
-                CircleSlider.HighlightKey(i);
 
-            else
-                CircleSlider.DefaultColor(i);
+            float time = i / 24f;
 
+            for (int j = 0; j < joints[jointIndex].CurveX.length; j++)
+            {
+                if (joints[jointIndex].CurveX.keys[j].time == time)
+                    CircleSlider.HighlightKey(i);
+
+                else if(CircleSlider.GetColor(i) == CircleSlider.HighLightColor() && prevJoint == selectedJoint)
+                    CircleSlider.HighlightKey(i);
+
+                else
+                    CircleSlider.DefaultColor(i);
+
+            }
         }
+
+        prevJoint = selectedJoint;
     }
-*/
+
 
 }
