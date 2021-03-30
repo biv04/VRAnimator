@@ -75,7 +75,7 @@ public class controlanimation : MonoBehaviour
         //joints.Add(WaistJoint);
         //joints.Add(NeckJoint);
 
-
+        
         for (int i = 0; i < joints.Capacity; i++)
         {
             Debug.LogError("Inside Loop");
@@ -109,7 +109,7 @@ public class controlanimation : MonoBehaviour
             // Debug.LogError("This is the path: " + path);
 
             // end path
-            joints[i].CreateCurves();
+            joints[i].CreateCurves(GameObjectJoints[i]);
 
             clip.SetCurve(joints[i].Path, typeof(Transform), "localPosition.x", joints[i].CurveX);
 
@@ -125,7 +125,7 @@ public class controlanimation : MonoBehaviour
             clip.SetCurve(joints[i].Path, typeof(Transform), "localRotation.z", joints[i].CurveRotZ);
             // end rotation
         }
-
+        
         clip.legacy = true;
 
 
@@ -150,8 +150,7 @@ public class controlanimation : MonoBehaviour
 
         arm = handR.selectedJoint;
         keyNum = CircleSlider.frameNum;
-        //Debug.Log("KeyNum: " + keyNum);
-        //Debug.Log("PrevKeyNum: " + prevKeyNum);
+        //SetColor();
 
         for (int i = 0; i < joints.Capacity; i++)
         {
@@ -346,49 +345,41 @@ public class controlanimation : MonoBehaviour
         float time = n / 24f;
         int CurrentCurveIndex = 0;
         
-            for (int j = 0; j < joints[0].CurveX.length; j++)
+        for(int i = 0; i<joints.Capacity-1; i++)
+        {
+            for (int j = 0; j < joints[i].CurveX.length; j++)
             {
-                Debug.Log("CurveTime: " + joints[0].CurveX.keys[j].time + " Time: " + time);
-                if (joints[0].CurveX.keys[j].time == time)
+                Debug.Log("CurveTime: " + joints[i].CurveX.keys[j].time + " Time: " + time);
+                if (joints[i].CurveX.keys[j].time == time)
                     CurrentCurveIndex = j;
             }
 
-            Debug.Log("CurveIndex: " + CurrentCurveIndex + " PassedInValue: " + n); 
-            joints[0].CurveX.RemoveKey(CurrentCurveIndex);
-            joints[0].CurveY.RemoveKey(CurrentCurveIndex);
-            joints[0].CurveZ.RemoveKey(CurrentCurveIndex);
+            if (joints[i].CurveX.AddKey(time, positionx) == -1 || joints[i].CurveY.AddKey(time, positionx)==-1 || joints[i].CurveZ.AddKey(time, positionx)==-1 ||
+                joints[i].CurveRotX.AddKey(time, positionx) ==-1 || joints[i].CurveRotY.AddKey(time, positionx)==-1  || joints[i].CurveRotZ.AddKey(time, positionx)==-1 ) continue;
+            Debug.Log("CurveIndex: " + CurrentCurveIndex + " PassedInValue: " + n);
+            joints[i].CurveX.RemoveKey(CurrentCurveIndex);
+            joints[i].CurveY.RemoveKey(CurrentCurveIndex);
+            joints[i].CurveZ.RemoveKey(CurrentCurveIndex);
 
 
             // rotation
-            joints[0].CurveRotX.RemoveKey(CurrentCurveIndex);
-            joints[0].CurveRotY.RemoveKey(CurrentCurveIndex);
-            joints[0].CurveRotZ.RemoveKey(CurrentCurveIndex);
+            joints[i].CurveRotX.RemoveKey(CurrentCurveIndex);
+            joints[i].CurveRotY.RemoveKey(CurrentCurveIndex);
+            joints[i].CurveRotZ.RemoveKey(CurrentCurveIndex);
 
             Debug.Log("After deletion: " + joints[0].CurveX.length);
-
-
-
-
-        int i = 0;
-
-        obj = GameObjectJoints[i];
-
-        string path = "/" + obj.name;
-        while (obj.transform.parent != null)
-        {
-            obj = obj.transform.parent.gameObject;
-            path = "/" + obj.name + path;
         }
-        // return path;
-        joints[i].Path = path;
+           
 
+        CircleSlider.DefaultColor(n);
         clip.ClearCurves();
         SetCurve();
 
     }
 
-    public void CopyKey()
+    public void CopyKey(int n)
     {
+        float time = n / 24f;
 
     }
 
@@ -436,25 +427,27 @@ public class controlanimation : MonoBehaviour
         anim.AddClip(clip, clip.name);
     }
 
-    //public void GetGameObjectPath(GameObject obj, int index)
-    //{
-    //    string path = "/" + obj.name;
-    //    while (obj.transform.parent != null)
-    //    {
-    //        obj = obj.transform.parent.gameObject;
-    //        path = "/" + obj.name + path;
-    //    }
-    //    // return path;
-    //    joints[index].Path = path;
-
-    //    Debug.LogError("This is the path: " + path);
-
-    //}
 
     public List<Joint> savedJoints()
     {
         return joints;
     }
 
+    /*
+    void SetColor()
+    {
+        //Loop through all the frames, set color to yellow if there is a key on the curve
+        for(int i = 0; i< 24; i++)
+        {
+            float time = i / 24;
+            if(joints[jointIndex].CurveX.AddKey(time, positionx) == -1)
+                CircleSlider.HighlightKey(i);
+
+            else
+                CircleSlider.DefaultColor(i);
+
+        }
+    }
+*/
 
 }

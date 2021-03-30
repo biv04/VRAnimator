@@ -11,66 +11,320 @@ AnimationClip:
   m_Legacy: 1
   m_Compressed: 0
   m_UseHighQualityCurve: 1
-  m_RotationCurves: []
+  m_RotationCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 85.70309, y: 206.87672, z: 40.992573, w: 0}
+        inSlope: {x: -39.665382, y: -131.13858, z: 944.6033, w: 0}
+        outSlope: {x: -39.665382, y: -131.13858, z: 944.6033, w: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      - serializedVersion: 3
+        time: 0.33333334
+        value: {x: 72.48129, y: 163.16386, z: 355.86035, w: 0}
+        inSlope: {x: -45.226105, y: -99.5166, z: 459.8514, w: 0}
+        outSlope: {x: -45.226105, y: -99.5166, z: 459.8514, w: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      - serializedVersion: 3
+        time: 0.625
+        value: {x: 57.66847, y: 143.36127, z: 348.59772, w: 0}
+        inSlope: {x: -50.786827, y: -67.89462, z: -24.900461, w: 0}
+        outSlope: {x: -50.786827, y: -67.89462, z: -24.900461, w: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_L/LeftArmJoint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 279.01328, y: 6.8942127, z: 158.79251, w: 0}
+        inSlope: {x: -0.64572144, y: 66.60942, z: -78.02728, w: 0}
+        outSlope: {x: -0.64572144, y: 66.60942, z: -78.02728, w: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      - serializedVersion: 3
+        time: 0.33333334
+        value: {x: 278.79803, y: 29.097355, z: 132.78342, w: 0}
+        inSlope: {x: -0.64572144, y: 66.60942, z: -78.02728, w: 0}
+        outSlope: {x: -0.64572144, y: 66.60942, z: -78.02728, w: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_R/RightArmJoint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 355.83408, y: 88.60285, z: 90.05699, w: 0}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 0.0000017075473, y: 90.612656, z: 270, w: 0}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: -0, y: 0, z: 3.630464, w: 0}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/Spine2_M/Chest_M/NeckJoint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: -0, y: -0, z: 356.85376, w: 0}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 0.7982564, y: 100.94348, z: 274.32156, w: 0}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_L/LeftKneeJoint
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 359.20175, y: 79.05652, z: 94.32156, w: 0}
+        inSlope: {x: 0, y: 0, z: 0, w: 0}
+        outSlope: {x: 0, y: 0, z: 0, w: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_R/RightKneeJoint
   m_CompressedRotationCurves: []
   m_EulerCurves: []
   m_PositionCurves:
   - curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: -0.4951205, y: 0.9924563, z: 0.10783476}
+        inSlope: {x: 0.049500614, y: 2.158958, z: -0.20696908}
+        outSlope: {x: 0.049500614, y: 2.158958, z: -0.20696908}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.33333334
+        value: {x: -0.4786203, y: 1.712109, z: 0.038845062}
+        inSlope: {x: -0.50274104, y: 0.7824384, z: -0.012514025}
+        outSlope: {x: -0.50274104, y: 0.7824384, z: -0.012514025}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.625
+        value: {x: -0.78632355, y: 1.5388353, z: 0.0919112}
+        inSlope: {x: -1.0549827, y: -0.5940812, z: 0.18194103}
+        outSlope: {x: -1.0549827, y: -0.5940812, z: 0.18194103}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_L/LeftArmJoint
+    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_L/LeftArmJoint
   - curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 0.51669264, y: 0.8781016, z: 0.25454307}
+        inSlope: {x: -0.37363842, y: -0.4935733, z: -0.21469349}
+        outSlope: {x: -0.37363842, y: -0.4935733, z: -0.21469349}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.33333334
+        value: {x: 0.3921465, y: 0.71357715, z: 0.18297857}
+        inSlope: {x: -0.37363842, y: -0.4935733, z: -0.21469349}
+        outSlope: {x: -0.37363842, y: -0.4935733, z: -0.21469349}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_R/RightArmJoint
+    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_R/RightArmJoint
   - curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 0.08105088, y: 0.056257546, z: -0.050636493}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
+    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
   - curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: -0.08105088, y: 0.056257844, z: -0.050636493}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
+    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
   - curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: -0.1608513, y: 7.105427e-17, z: 3.9510244e-16}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /pDisc1/FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_L/LeftArmJoint
+    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/Spine2_M/Chest_M/NeckJoint
   - curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: -0.1397404, y: 5.3290704e-17, z: -7.0816024e-17}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /pDisc1/FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_R/RightArmJoint
+    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint
   - curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: -0.136, y: 0.438, z: 0.215}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /pDisc1/FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
+    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_L/LeftKneeJoint
   - curve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 0.051, y: 0.437, z: 0.214}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /pDisc1/FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
+    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_R/RightKneeJoint
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -87,7 +341,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.625
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -102,247 +356,7 @@ AnimationClip:
     m_KeepOriginalPositionXZ: 0
     m_HeightFromFeet: 0
     m_Mirror: 0
-  m_EditorCurves:
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.x
-    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_L/LeftArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.y
-    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_L/LeftArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.z
-    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_L/LeftArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.x
-    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_R/RightArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.y
-    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_R/RightArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.z
-    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_R/RightArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.x
-    path: /FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.y
-    path: /FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.z
-    path: /FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.x
-    path: /FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.y
-    path: /FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.z
-    path: /FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.x
-    path: /pDisc1/FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_L/LeftArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.y
-    path: /pDisc1/FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_L/LeftArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.z
-    path: /pDisc1/FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_L/LeftArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.x
-    path: /pDisc1/FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_R/RightArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.y
-    path: /pDisc1/FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_R/RightArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.z
-    path: /pDisc1/FullAvatar/Group/Main/DeformationSystem/Root_M/Spine1_M/UpperConstraints/ArmIK_R/RightArmJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.x
-    path: /pDisc1/FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.y
-    path: /pDisc1/FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.z
-    path: /pDisc1/FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.x
-    path: /pDisc1/FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.y
-    path: /pDisc1/FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.z
-    path: /pDisc1/FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
-    classID: 4
-    script: {fileID: 0}
+  m_EditorCurves: []
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0

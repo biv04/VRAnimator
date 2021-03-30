@@ -20,16 +20,25 @@ public class Joint
         this.name = _name;
     }
 
-    public void CreateCurves()
+    public void CreateCurves(GameObject joint)
     {
         curvex = new AnimationCurve();
         curvey = new AnimationCurve();
         curvez = new AnimationCurve();
 
+        curvex.AddKey(0, joint.transform.localPosition.x);
+        curvey.AddKey(0, joint.transform.localPosition.y);
+        curvez.AddKey(0, joint.transform.localPosition.z);
+
+
         // rotation
         curverotx = new AnimationCurve();
         curveroty = new AnimationCurve();
         curverotz = new AnimationCurve();
+        curverotx.AddKey(0, joint.transform.localEulerAngles.x);
+        curveroty.AddKey(0, joint.transform.localEulerAngles.y);
+        curverotz.AddKey(0, joint.transform.localEulerAngles.z);
+
     }
 
     public string Path
