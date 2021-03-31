@@ -27,6 +27,13 @@ public class LoadButton : MonoBehaviour
         FindClip(index);
     }
 
+	void Update(){
+	if(Input.GetKeyDown("space")){
+		controlanimation.SetAnimationClip(newClip);	
+		Debug.Log("Update Animation");
+	}
+	
+	}
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name == "Hand_Index")
@@ -38,11 +45,12 @@ public class LoadButton : MonoBehaviour
         }
     }
 
+	
     private void FindClip(int i)
     {
-        newClip = Resources.Load("SavedClip - " + i + ".anim") as AnimationClip;
-        Debug.LogError("Index: " + index + " NewClipName: " + newClip.name);
-
-
+       // newClip = Resources.Load("SavedClip - " + i + ".anim") as AnimationClip;
+		newClip = Resources.Load<AnimationClip>("SavedClip - " + i);
+		
+		
     }
 }
