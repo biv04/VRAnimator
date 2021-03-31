@@ -472,5 +472,10 @@ public class controlanimation : MonoBehaviour
         prevJoint = selectedJoint;
     }
 
+    public void SetAnimationClip(AnimationClip newClip)
+    {
+        clip = newClip;
+        anim.clip = newClip;
+    }
 
 }

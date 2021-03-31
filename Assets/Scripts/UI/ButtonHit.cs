@@ -19,8 +19,13 @@ public class ButtonHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        buttons.SetHitImg();
-        buttons.isOn = !buttons.isOn;
+        if (other.gameObject.name == "Hand_IndexTip")
+        {
+            buttons.SetHitImg();
+            buttons.isOn = !buttons.isOn;
+        }
+
+        
     }
 
     private void OnTriggerExit(Collider other)

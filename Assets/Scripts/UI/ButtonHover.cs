@@ -19,6 +19,7 @@ public class ButtonHover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.name == "Hand_IndexTip")
         buttons.SetHoverImg();
     }
 

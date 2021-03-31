@@ -28,6 +28,7 @@ public class ExportAnimation : MonoBehaviour
     public void saveAnimation(AnimationClip clip, string clipName)
     {
         AnimationClip newAnimation = new AnimationClip();
+        newAnimation.legacy = true;
         joints = controlanimation.savedJoints();
 
 
@@ -74,7 +75,7 @@ public class ExportAnimation : MonoBehaviour
 
 
 
-        clipName = "Assets/SavedAnimation/" + clipName + " - " + clipCount + ".anim";
+        clipName = "Assets/Resources/" + clipName + " - " + clipCount + ".anim";
         AssetDatabase.CreateAsset(newAnimation, clipName);
         AssetDatabase.SaveAssets();
         clipCount++;
