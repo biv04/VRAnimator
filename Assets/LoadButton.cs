@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.UI;
 
 
@@ -36,7 +37,7 @@ public class LoadButton : MonoBehaviour
 	}
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Hand_Index")
+        if(other.gameObject.name == "Hand_IndexTip")
         {
 
             // Set animation to this clip
@@ -48,9 +49,11 @@ public class LoadButton : MonoBehaviour
 	
     private void FindClip(int i)
     {
-       // newClip = Resources.Load("SavedClip - " + i + ".anim") as AnimationClip;
-		newClip = Resources.Load<AnimationClip>("SavedClip - " + i);
-		
-		
+        // newClip = Resources.Load("SavedClip - " + i + ".anim") as AnimationClip;
+        //newClip = Resources.Load<AnimationClip>("SavedClip - " + i);
+        newClip= (AnimationClip)AssetDatabase.LoadAssetAtPath("Assets/Resources/SavedClip - " + i + ".anim", typeof(AnimationClip));
+        //ResourceRequest request = Resources.LoadAsync("SavedClip - " + i );
+        //newClip = request.asset as AnimationClip;
+
     }
 }

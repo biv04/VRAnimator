@@ -32,7 +32,7 @@ public class KeyframeMenu : MonoBehaviour
             {
                 frameCanvas.SetActive(false);
                 keyCanvas.SetActive(true);
-                keyCanvas.transform.position = circleSlider.transform.position + dir * 0.16f;
+                keyCanvas.transform.position = circleSlider.transform.position + dir * 0.2f;
             }
 
             else
@@ -40,7 +40,7 @@ public class KeyframeMenu : MonoBehaviour
 
                 frameCanvas.SetActive(true);
                 keyCanvas.SetActive(false);
-                frameCanvas.transform.position = circleSlider.transform.position + dir * 0.12f;
+                frameCanvas.transform.position = circleSlider.transform.position + dir * 0.16f;
 
             }
         }

@@ -476,6 +476,8 @@ public class controlanimation : MonoBehaviour
     {
         clip = newClip;
         anim.clip = newClip;
+        anim.AddClip(clip, clip.name);
+
     }
 
 }

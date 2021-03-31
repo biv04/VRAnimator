@@ -19,7 +19,10 @@ public class ButtonHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Hand_IndexTip")
+        Vector3 direction = transform.position - other.gameObject.transform.position;
+        Debug.Log("UI Colliding Direction: " + direction);
+       
+        if (other.gameObject.name == "Hand_IndexTip"  &&  (direction.y > 0))
         {
             buttons.SetHitImg();
             buttons.isOn = !buttons.isOn;
