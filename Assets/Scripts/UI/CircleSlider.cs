@@ -38,7 +38,9 @@ public class CircleSlider : MonoBehaviour
     private void Update()
     {
         int tempFrame = frameNum - 24 * LoopNum;
-		for(int i = tempFrame; i<24; i++){
+        tempFrame = Clamp(tempFrame);
+
+        for (int i = tempFrame; i<24; i++){
 
             if (frameCubes[i].GetComponent<MeshRenderer>().material.color  == HightlightMat.color)
             {
@@ -49,7 +51,8 @@ public class CircleSlider : MonoBehaviour
 				
 		}
 
-		for(int i = 0; i<=tempFrame; i++){
+       
+        for (int i = 0; i<=tempFrame; i++){
 
 			if(frameCubes[i].GetComponent<MeshRenderer>().material.color == HightlightMat.color){
 				//Debug.Log("There is a key at frame " + i);
@@ -155,21 +158,31 @@ public class CircleSlider : MonoBehaviour
     }
 
     private void HighlightFrame(int frameNum){
-		frameCubes[frameNum].GetComponent<MeshRenderer>().material = FillMat;
+        int tempFrame = frameNum - 24 * LoopNum;
+        tempFrame = Clamp(tempFrame);
+        frameCubes[frameNum].GetComponent<MeshRenderer>().material = FillMat;
 		//Debug.Log("Set Fill color for " + frameCubes[frameNum]);
 	}
 	
 	public void HighlightKey(int frameNum){
-		frameCubes[frameNum].GetComponent<MeshRenderer>().material = HightlightMat;
+        int tempFrame = frameNum - 24 * LoopNum;
+        tempFrame = Clamp(tempFrame);
+
+        frameCubes[tempFrame].GetComponent<MeshRenderer>().material = HightlightMat;
 	}
 	
 	public void DefaultColor(int frameNum){
-		frameCubes[frameNum].GetComponent<MeshRenderer>().material = DefaultMat;
+        int tempFrame = frameNum - 24 * LoopNum;
+        tempFrame = Clamp(tempFrame);
+        
+        frameCubes[tempFrame].GetComponent<MeshRenderer>().material = DefaultMat;
 	}
 
     public Color GetColor(int frameNum)
     {
-        return frameCubes[frameNum].GetComponent<MeshRenderer>().material.color;
+        int tempFrame = frameNum - 24 * LoopNum;
+        tempFrame = Clamp(tempFrame);
+        return frameCubes[tempFrame].GetComponent<MeshRenderer>().material.color;
     }
 
     public Color HighLightColor()
@@ -190,7 +203,16 @@ public class CircleSlider : MonoBehaviour
         LoopNum--;
     }
 
+    int Clamp(int n)
+    {
+        if (n < 1)
+            n = 1;
 
+        if (n > 23)
+            n = 23;
+
+        return n;
+    }
     /*
     private void OnCollisionEnter(Collision collision)
     {

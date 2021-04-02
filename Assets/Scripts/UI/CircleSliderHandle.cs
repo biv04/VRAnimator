@@ -28,6 +28,12 @@ public class CircleSliderHandle : MonoBehaviour
         {
             isMove = false;
         }
+
+        //Disable the left collider on the first loop
+        if(circleSlider.LoopNum == 0)
+        {
+            ColliderLeft.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,8 +48,10 @@ public class CircleSliderHandle : MonoBehaviour
         if (other.gameObject.CompareTag("LeftCollider"))
         {
           
-                ColliderRight.SetActive(false);
-                Debug.Log("Left Collider, Decrease");
+            ColliderRight.SetActive(false);
+            ColliderLeft.SetActive(false);
+
+            Debug.Log("Left Collider, Decrease");
             circleSlider.DecreaseValue();
 
         }
@@ -51,6 +59,8 @@ public class CircleSliderHandle : MonoBehaviour
         if (other.gameObject.CompareTag("RightCollider"))
         {
             ColliderLeft.SetActive(false);
+            ColliderRight.SetActive(false);
+
             Debug.Log("Right Collider, Increase");
             circleSlider.increaseValue();
         }

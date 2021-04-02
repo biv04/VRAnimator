@@ -39,6 +39,7 @@ public class controlanimation : MonoBehaviour
     List<Joint> joints = new List<Joint>();
     List<CircleSlider> sliders = new List<CircleSlider>();
     Joint prevJoint = new Joint("PrevJoint");
+    int prevLoop;
 
 
     int jointIndex = 0;
@@ -449,27 +450,32 @@ public class controlanimation : MonoBehaviour
         if (prevJoint == null)
             prevJoint = selectedJoint;
 
-        //Loop through all the frames, set color to yellow if there is a key on the curve
-        for(int i = 0; i< 24; i++)
-        {
 
+        int maxFrame =  24 * (CircleSlider.LoopNum +1);
+        int startFrame = 24 * (CircleSlider.LoopNum) + 1;
+        if (startFrame == 1) startFrame = 0;
+
+        //Loop through all the frames, set color to yellow if there is a key on the curve
+        for (int i = startFrame; i< maxFrame; i++)
+        {
             float time = i / 24f;
+            Debug.Log("Time: " + time);
 
             for (int j = 0; j < joints[jointIndex].CurveX.length; j++)
             {
                 if (joints[jointIndex].CurveX.keys[j].time == time)
                     CircleSlider.HighlightKey(i);
 
-                else if(CircleSlider.GetColor(i) == CircleSlider.HighLightColor() && prevJoint == selectedJoint)
+                else if(CircleSlider.GetColor(i) == CircleSlider.HighLightColor() && prevJoint == selectedJoint && prevLoop == CircleSlider.LoopNum)
                     CircleSlider.HighlightKey(i);
 
                 else
                     CircleSlider.DefaultColor(i);
-
             }
         }
 
         prevJoint = selectedJoint;
+        prevLoop = CircleSlider.LoopNum;
     }
 
     public void SetAnimationClip(AnimationClip newClip)
