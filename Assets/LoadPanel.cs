@@ -7,6 +7,7 @@ public class LoadPanel : MonoBehaviour
 {
     //Populate the panel based on the # of saved animation in the SavedAnimation folder
     int num;
+    public string pathStr;
     string path;
     public string[] ClipList;
 
@@ -16,7 +17,7 @@ public class LoadPanel : MonoBehaviour
     private void Start()
     {
         ClipList = new string[18];
-        path = Application.dataPath + "/Resources";
+        path = Application.dataPath + "/Resources" + pathStr;
         num = GetCount();
         DisplayIcons(GetCount());
 

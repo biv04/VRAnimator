@@ -9,10 +9,15 @@ public class handleController : MonoBehaviour
     bool grabbed = false;
     public HandGrabbing handR;
     public GameObject mypanel;
+
+    Vector3 PanelStartPos, HandStartPos;
+    float PanelMinY = -10f;
+
+
     // Start is called before the first frame update
     void Start()
     {
-         
+        mypanel.transform.position = new Vector3(mypanel.transform.position.x, PanelMinY, mypanel.transform.position.z);
     }
 
     // Update is called once per frame
@@ -21,9 +26,18 @@ public class handleController : MonoBehaviour
         if (grabbed)
         {
             // Vector2 min = new Vector3(handR.transform.position.x , handR.transform.position.y);
-            mypanel.transform.position = new Vector3(mypanel.transform.position.x, handR.transform.position.y, mypanel.transform.position.z);
-           
+            mypanel.transform.position = new Vector3(mypanel.transform.position.x, PanelStartPos.y + ( handR.transform.position.y - HandStartPos.y), mypanel.transform.position.z);
+            if (mypanel.transform.position.y < PanelMinY)
+            {
+                Debug.Log("Clamp");
+                mypanel.transform.position = new Vector3(mypanel.transform.position.x, PanelMinY, mypanel.transform.position.z);
+            }
         }
+
+
+
+        if (!handR.isPinch)
+            grabbed = false;
     }
 
 
@@ -32,7 +46,8 @@ public class handleController : MonoBehaviour
         if (handR.isPinch)
         {
             grabbed = true;
-
+            PanelStartPos = mypanel.transform.position;
+            HandStartPos = handR.transform.position;
         }
     }
 
@@ -47,7 +62,7 @@ public class handleController : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
       
-            grabbed = false;
+           // grabbed = false;
         
     }
 
