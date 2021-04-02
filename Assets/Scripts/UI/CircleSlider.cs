@@ -8,6 +8,8 @@ public class CircleSlider : MonoBehaviour
     [SerializeField] Transform handle;
     [SerializeField] Image fill;
     [SerializeField] Text valTxt, jointName;
+
+    public int LoopNum ;
     public int frameNum;
 
     public HandGrabbing handR;
@@ -21,9 +23,11 @@ public class CircleSlider : MonoBehaviour
     public GameObject parent;
 
     public GameObject[] frameCubes;
+    public List<GameObject[]> FrameCubesList = new List<GameObject[]>();
 	public Material DefaultMat, FillMat, HightlightMat;
     private void Start()
     {
+        LoopNum = 0;
         frameCubes = new GameObject[24];
         CreateFramesAroundPoint(24, gameObject.transform.position, 0.085f);
 
@@ -77,7 +81,7 @@ public class CircleSlider : MonoBehaviour
     {
         handPos = handR.transform.position;
         mousePos = Input.mousePosition;
-        Vector2 dir = handPos - handle.position;
+        Vector2 dir = mousePos - handle.position;
         //Debug.Log("OriginalDir" + dir);
         //dir = dir * 10;
         //Debug.Log("NewDir"+dir);
@@ -94,7 +98,7 @@ public class CircleSlider : MonoBehaviour
             angle = ((angle >= 315) ? (angle - 360) : angle) + 45;
 
             fill.fillAmount = 1f - (angle / 270);
-            frameNum = (int)Mathf.Round((fill.fillAmount * 23) / 1f);
+            frameNum = (int)Mathf.Round((fill.fillAmount * 23) / 1f) + 24 * LoopNum ;
             valTxt.text = (frameNum+1).ToString();
         }
     }
@@ -168,4 +172,16 @@ public class CircleSlider : MonoBehaviour
     {
         jointName.text = name;
     }
+    public void increaseValue()
+    {
+        LoopNum++;
+    }
+    public void DecreaseValue()
+    {
+        LoopNum--;
+    }
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    LoopNum++;
+    //}
 }
