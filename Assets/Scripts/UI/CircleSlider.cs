@@ -23,8 +23,9 @@ public class CircleSlider : MonoBehaviour
     public GameObject parent;
 
     public GameObject[] frameCubes;
-    public List<GameObject[]> FrameCubesList = new List<GameObject[]>();
 	public Material DefaultMat, FillMat, HightlightMat;
+
+    public GameObject ColliderLeft, ColliderRight;
     private void Start()
     {
         LoopNum = 0;
@@ -36,7 +37,8 @@ public class CircleSlider : MonoBehaviour
     }
     private void Update()
     {
-		for(int i = frameNum; i<24; i++){
+        int tempFrame = frameNum - 24 * LoopNum;
+		for(int i = tempFrame; i<24; i++){
 
             if (frameCubes[i].GetComponent<MeshRenderer>().material.color  == HightlightMat.color)
             {
@@ -47,7 +49,7 @@ public class CircleSlider : MonoBehaviour
 				
 		}
 
-		for(int i = 0; i<=frameNum; i++){
+		for(int i = 0; i<=tempFrame; i++){
 
 			if(frameCubes[i].GetComponent<MeshRenderer>().material.color == HightlightMat.color){
 				//Debug.Log("There is a key at frame " + i);
@@ -81,16 +83,22 @@ public class CircleSlider : MonoBehaviour
     {
         handPos = handR.transform.position;
         mousePos = Input.mousePosition;
-        Vector2 dir = mousePos - handle.position;
+        Vector2 dir = handPos - handle.position;
         //Debug.Log("OriginalDir" + dir);
         //dir = dir * 10;
         //Debug.Log("NewDir"+dir);
 
+
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         angle = (angle <= 0) ? (360 + angle) : angle;
+
         if (angle <= 225 || angle >= 315)
         {
-            Quaternion r = Quaternion.AngleAxis(angle + 135f, Vector3.forward);
+            ColliderLeft.SetActive(true);
+            ColliderRight.SetActive(true);
+        }
+
+        Quaternion r = Quaternion.AngleAxis(angle + 135f, Vector3.forward);
 
             handle.localRotation = r;
             //Debug.Log("ANGLE: " + angle);
@@ -100,8 +108,9 @@ public class CircleSlider : MonoBehaviour
             fill.fillAmount = 1f - (angle / 270);
             frameNum = (int)Mathf.Round((fill.fillAmount * 23) / 1f) + 24 * LoopNum ;
             valTxt.text = (frameNum+1).ToString();
-        }
+
     }
+
 
     private void CreateFramesAroundPoint(int num, Vector3 point, float radius)
     {
@@ -180,8 +189,19 @@ public class CircleSlider : MonoBehaviour
     {
         LoopNum--;
     }
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    LoopNum++;
-    //}
+
+
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.CompareTag("Handle"))
+        {
+
+            Debug.Log("Hit Object Name: " + collision.gameObject);
+            LoopNum++;
+
+        }
+    }
+    */
 }

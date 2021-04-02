@@ -8,6 +8,7 @@ public class CircleSliderHandle : MonoBehaviour
     public HandGrabbing handR;
     public controlanimation controlanimation;
     public PlayButton PlayButton;
+    public GameObject ColliderLeft, ColliderRight;
 
     bool isMove;
 
@@ -36,6 +37,22 @@ public class CircleSliderHandle : MonoBehaviour
             circleSlider.isDrag = true;
             isMove = true;
 
+        }
+
+        if (other.gameObject.CompareTag("LeftCollider"))
+        {
+          
+                ColliderRight.SetActive(false);
+                Debug.Log("Left Collider, Decrease");
+            circleSlider.DecreaseValue();
+
+        }
+
+        if (other.gameObject.CompareTag("RightCollider"))
+        {
+            ColliderLeft.SetActive(false);
+            Debug.Log("Right Collider, Increase");
+            circleSlider.increaseValue();
         }
     }
 
