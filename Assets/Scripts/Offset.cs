@@ -5,7 +5,10 @@ using UnityEngine;
 public class Offset : MonoBehaviour
 {
     Transform sObject;
-    public Transform lObject;
+    public Transform[] lObject =  new Transform[3];
+	public bool fixedPos;
+	//int objNum = 1;
+	
    
     //Position
     Vector3 oldPosition, newPosition, posDiff;
@@ -24,23 +27,29 @@ public class Offset : MonoBehaviour
     void Update()
     {
         //Store new Position & rotation
-      //  newPosition = sObject.position;
-      //  newRotate = sObject.rotation;
+        newPosition = sObject.position;
+        //newRotate = sObject.rotation;
 
         //Calculte difference in small object
-       // posDiff = newPosition - oldPosition;
-      //  rotDiff = newRotate * Quaternion.Inverse(oldRotate);
-       
-        //Apply difference to large object
-      //  lObject.position += posDiff*4;
-       // lObject.rotation = oldRotate * rotDiff;
-
+        posDiff = newPosition - oldPosition;
+        //rotDiff = newRotate * Quaternion.Inverse(oldRotate);
+        
+		
+		//Apply difference to large object
+	    for(int i = 0; i<lObject.Length; i++){
+		if(!fixedPos){
+		    lObject[i].position += posDiff*4;
+		}
+		lObject[i].localRotation = sObject.transform.localRotation;
+		}
         //Set oldPos to current position
-      //  oldPosition = sObject.position;
+        oldPosition = sObject.position;
 
 
         // new way
-        lObject.transform.localRotation = sObject.transform.localRotation;
-        lObject.transform.localPosition = sObject.transform.localPosition;
-    }
+		/*
+        lObject[objNum].localRotation = sObject.transform.localRotation;
+        lObject[objNum].localPosition = sObject.transform.localPosition;
+    */
+	}
 }
