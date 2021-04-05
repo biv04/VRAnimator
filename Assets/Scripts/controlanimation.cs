@@ -27,7 +27,7 @@ public class controlanimation : MonoBehaviour
 
     private GameObject arm;
     public HandGrabbing handR;
-    public Material defaultMat;
+    public Material defaultMat, highlightMat;
     private string path;
 
     //public Slider timeSlider;
@@ -171,7 +171,7 @@ public class controlanimation : MonoBehaviour
             if (joints[i].Name == arm.gameObject.name)
             {
                 jointIndex = i;
-                GameObjectJoints[i].GetComponentInChildren<MeshRenderer>().material.color = Color.cyan;
+                GameObjectJoints[i].GetComponentInChildren<MeshRenderer>().material= highlightMat;
                 CircleSlider.SetJointName(joints[jointIndex].Name);
             }
 
