@@ -20,7 +20,7 @@ public class displayGizmos : MonoBehaviour
     private Transform[] points;
     public int lengthOfLineRenderer = 16;
     private Vector3[] positionList = new Vector3[16];
-   
+
 
     private void Start()
     {
@@ -32,11 +32,11 @@ public class displayGizmos : MonoBehaviour
     }
     void Update()
     {
-        
+
 
         Bounds bounds = GetComponent<MeshFilter>().sharedMesh.bounds;
 
-        
+
 
         Vector3 v3Center = bounds.center;
         Vector3 v3Extents = bounds.extents;
@@ -86,8 +86,7 @@ public class displayGizmos : MonoBehaviour
         lr.SetPositions(positionList);
     }
 
-   
-    
+
+
 
 }
-     
