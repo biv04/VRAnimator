@@ -7,7 +7,6 @@ public class Offset : MonoBehaviour
     Transform sObject;
     public Transform[] lObject =  new Transform[3];
 	public bool fixedPos;
-	public PlaneControl plane;
 	//int objNum = 1;
 	
    
@@ -18,7 +17,6 @@ public class Offset : MonoBehaviour
 
     void Start()
     {
-		plane= (PlaneControl) GameObject.FindObjectOfType (typeof(PlaneControl));
         sObject = this.gameObject.transform;
         oldPosition = sObject.position;
         oldRotate = sObject.rotation;
@@ -28,9 +26,7 @@ public class Offset : MonoBehaviour
 
     void Update()
     {
-		
-		if(plane.GrabThis == false){
-			 //Store new Position & rotation
+        //Store new Position & rotation
         newPosition = sObject.position;
         //newRotate = sObject.rotation;
 
@@ -48,8 +44,6 @@ public class Offset : MonoBehaviour
 		}
         //Set oldPos to current position
         oldPosition = sObject.position;
-		}
-       
 
 
         // new way

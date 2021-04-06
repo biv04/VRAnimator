@@ -11,7 +11,7 @@ public class PlaneControl : MonoBehaviour
 
     public HandGrabbing handGrabbingL, handGrabbingR;
     public GameObject handL, handR, cube;
-    public bool GrabThis;
+    bool GrabThis;
     float prevX, prevY, prevZ;
 
     void Start()
