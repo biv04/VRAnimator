@@ -20,70 +20,92 @@ public class displayGizmos : MonoBehaviour
     private Transform[] points;
     public int lengthOfLineRenderer = 16;
     private Vector3[] positionList = new Vector3[16];
+    public float distance;
+    private float currentDistance;
+    public GameObject hand;
 
 
     private void Start()
     {
+        distance = 0.2f;
+        hand = GameObject.Find("/OVRCameraRig/TrackingSpace/LeftHandAnchor/OVRHandPrefab");
         lr = GetComponent<LineRenderer>();
         lr.widthMultiplier = 0.2f;
         lr.positionCount = lengthOfLineRenderer;
         positionList = new Vector3[lengthOfLineRenderer];
 
+
     }
     void Update()
     {
 
+        currentDistance = Vector3.Distance(transform.position, hand.transform.position);
 
-        Bounds bounds = GetComponent<MeshFilter>().sharedMesh.bounds;
+        Debug.Log(currentDistance);
 
-
-
-        Vector3 v3Center = bounds.center;
-        Vector3 v3Extents = bounds.extents;
-
-        v3FrontTopLeft = new Vector3(v3Center.x - v3Extents.x, v3Center.y + v3Extents.y, v3Center.z - v3Extents.z);  // Front top left corner
-        v3FrontTopRight = new Vector3(v3Center.x + v3Extents.x, v3Center.y + v3Extents.y, v3Center.z - v3Extents.z);  // Front top right corner
-        v3FrontBottomLeft = new Vector3(v3Center.x - v3Extents.x, v3Center.y - v3Extents.y, v3Center.z - v3Extents.z);  // Front bottom left corner
-        v3FrontBottomRight = new Vector3(v3Center.x + v3Extents.x, v3Center.y - v3Extents.y, v3Center.z - v3Extents.z);  // Front bottom right corner
-        v3BackTopLeft = new Vector3(v3Center.x - v3Extents.x, v3Center.y + v3Extents.y, v3Center.z + v3Extents.z);  // Back top left corner
-        v3BackTopRight = new Vector3(v3Center.x + v3Extents.x, v3Center.y + v3Extents.y, v3Center.z + v3Extents.z);  // Back top right corner
-        v3BackBottomLeft = new Vector3(v3Center.x - v3Extents.x, v3Center.y - v3Extents.y, v3Center.z + v3Extents.z);  // Back bottom left corner
-        v3BackBottomRight = new Vector3(v3Center.x + v3Extents.x, v3Center.y - v3Extents.y, v3Center.z + v3Extents.z);  // Back bottom right corner
-
-        v3FrontTopLeft = transform.TransformPoint(v3FrontTopLeft);
-        v3FrontTopRight = transform.TransformPoint(v3FrontTopRight);
-        v3FrontBottomLeft = transform.TransformPoint(v3FrontBottomLeft);
-        v3FrontBottomRight = transform.TransformPoint(v3FrontBottomRight);
-        v3BackTopLeft = transform.TransformPoint(v3BackTopLeft);
-        v3BackTopRight = transform.TransformPoint(v3BackTopRight);
-        v3BackBottomLeft = transform.TransformPoint(v3BackBottomLeft);
-        v3BackBottomRight = transform.TransformPoint(v3BackBottomRight);
+            Bounds bounds = GetComponent<MeshFilter>().sharedMesh.bounds;
 
 
-        positionList[0] = v3FrontTopLeft;
-        positionList[1] = v3FrontBottomLeft;
-        positionList[2] = v3FrontBottomRight;
-        positionList[3] = v3FrontTopRight;
-        positionList[4] = v3FrontTopLeft;
-        positionList[5] = v3BackTopLeft;
-        positionList[6] = v3BackBottomLeft;
-        positionList[7] = v3FrontBottomLeft;
+
+            Vector3 v3Center = bounds.center;
+            Vector3 v3Extents = bounds.extents;
+
+            v3FrontTopLeft = new Vector3(v3Center.x - v3Extents.x, v3Center.y + v3Extents.y, v3Center.z - v3Extents.z);  // Front top left corner
+            v3FrontTopRight = new Vector3(v3Center.x + v3Extents.x, v3Center.y + v3Extents.y, v3Center.z - v3Extents.z);  // Front top right corner
+            v3FrontBottomLeft = new Vector3(v3Center.x - v3Extents.x, v3Center.y - v3Extents.y, v3Center.z - v3Extents.z);  // Front bottom left corner
+            v3FrontBottomRight = new Vector3(v3Center.x + v3Extents.x, v3Center.y - v3Extents.y, v3Center.z - v3Extents.z);  // Front bottom right corner
+            v3BackTopLeft = new Vector3(v3Center.x - v3Extents.x, v3Center.y + v3Extents.y, v3Center.z + v3Extents.z);  // Back top left corner
+            v3BackTopRight = new Vector3(v3Center.x + v3Extents.x, v3Center.y + v3Extents.y, v3Center.z + v3Extents.z);  // Back top right corner
+            v3BackBottomLeft = new Vector3(v3Center.x - v3Extents.x, v3Center.y - v3Extents.y, v3Center.z + v3Extents.z);  // Back bottom left corner
+            v3BackBottomRight = new Vector3(v3Center.x + v3Extents.x, v3Center.y - v3Extents.y, v3Center.z + v3Extents.z);  // Back bottom right corner
+
+            v3FrontTopLeft = transform.TransformPoint(v3FrontTopLeft);
+            v3FrontTopRight = transform.TransformPoint(v3FrontTopRight);
+            v3FrontBottomLeft = transform.TransformPoint(v3FrontBottomLeft);
+            v3FrontBottomRight = transform.TransformPoint(v3FrontBottomRight);
+            v3BackTopLeft = transform.TransformPoint(v3BackTopLeft);
+            v3BackTopRight = transform.TransformPoint(v3BackTopRight);
+            v3BackBottomLeft = transform.TransformPoint(v3BackBottomLeft);
+            v3BackBottomRight = transform.TransformPoint(v3BackBottomRight);
 
 
-        positionList[8] = v3FrontBottomRight;
-        positionList[9] = v3BackBottomRight;
-        positionList[10] = v3BackBottomLeft;
+            positionList[0] = v3FrontTopLeft;
+            positionList[1] = v3FrontBottomLeft;
+            positionList[2] = v3FrontBottomRight;
+            positionList[3] = v3FrontTopRight;
+            positionList[4] = v3FrontTopLeft;
+            positionList[5] = v3BackTopLeft;
+            positionList[6] = v3BackBottomLeft;
+            positionList[7] = v3FrontBottomLeft;
 
 
-        positionList[11] = v3BackBottomRight;
-        positionList[12] = v3BackTopRight;
-        positionList[13] = v3BackTopLeft;
+            positionList[8] = v3FrontBottomRight;
+            positionList[9] = v3BackBottomRight;
+            positionList[10] = v3BackBottomLeft;
 
 
-        positionList[14] = v3BackTopRight;
-        positionList[15] = v3FrontTopRight;
+            positionList[11] = v3BackBottomRight;
+            positionList[12] = v3BackTopRight;
+            positionList[13] = v3BackTopLeft;
+
+
+            positionList[14] = v3BackTopRight;
+            positionList[15] = v3FrontTopRight;
         //positionList[16] = v3BackTopLeft;
         lr.SetPositions(positionList);
+
+
+        if (currentDistance < distance)
+        {
+            if (!lr.enabled)
+                lr.enabled = !lr.enabled;
+            
+        }
+        else 
+        {
+            if (lr.enabled)
+            lr.enabled = !lr.enabled;
+        }
     }
 
 

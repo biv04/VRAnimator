@@ -163,6 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0.79118705, a: 1}
   lengthOfLineRenderer: 16
+  distance: 0.3
+  hand: {fileID: 0}
 --- !u!120 &3692082221459304142
 LineRenderer:
   m_ObjectHideFlags: 0
