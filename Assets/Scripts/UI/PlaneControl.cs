@@ -28,6 +28,7 @@ public class PlaneControl : MonoBehaviour
         
         if (GrabThis)
         {
+            DisableOffset();
             RotateThis();
             TranslateThis();
         }
@@ -90,5 +91,12 @@ public class PlaneControl : MonoBehaviour
         Debug.Log("reset");
         sObject.transform.position = originalPos;
         sObject.transform.rotation = originalRotate;
+    }
+
+    void DisableOffset()
+    {
+        GameObject[] varGameObject = GameObject.FindGameObjectsWithTag("joint");
+        foreach(GameObject joint in varGameObject)
+            joint.GetComponent<Offset>().enabled = false;
     }
 }

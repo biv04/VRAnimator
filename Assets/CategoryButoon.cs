@@ -8,7 +8,7 @@ public class CategoryButoon : MonoBehaviour
 
     public GameObject Camping, Miscellaneous, Plants;
 
-    bool isCreating;
+    public bool isCreating;
 
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class CategoryButoon : MonoBehaviour
             {
                 Camping.SetActive(true);
                 Miscellaneous.SetActive(false);
-                Camping.SetActive(false);
+                Plants.SetActive(false);
             }
             if (gameObject.name == "MisHit")
             {

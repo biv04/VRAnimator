@@ -30,7 +30,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_L/LeftArmJoint
+    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_L/LeftArmJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -46,7 +46,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_R/RightArmJoint
+    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_R/RightArmJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -62,7 +62,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
+    path: /FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -78,7 +78,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
+    path: /FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -94,7 +94,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/Spine2_M/Chest_M/NeckJoint
+    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/Spine2_M/Chest_M/NeckJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -110,7 +110,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint
+    path: /FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -126,7 +126,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_L/LeftKneeJoint
+    path: /FullAvatar/LowerConstraints/LegIK_L/LeftKneeJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -142,7 +142,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_R/RightKneeJoint
+    path: /FullAvatar/LowerConstraints/LegIK_R/RightKneeJoint
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
