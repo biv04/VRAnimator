@@ -26,6 +26,8 @@ public class CircleSlider : MonoBehaviour
 	public Material DefaultMat, FillMat, HightlightMat;
 
     public GameObject ColliderLeft, ColliderRight;
+
+    bool setText;
     private void Start()
     {
         LoopNum = 0;
@@ -39,6 +41,7 @@ public class CircleSlider : MonoBehaviour
     {
         int tempFrame = frameNum - 24 * LoopNum;
         tempFrame = Clamp(tempFrame);
+        Debug.Log("TempFrameNum: " + tempFrame + " LoopNum: " + LoopNum);
 
         for (int i = tempFrame; i<24; i++){
 
@@ -46,10 +49,13 @@ public class CircleSlider : MonoBehaviour
             {
 				// Debug.Log("PLEASEEEE WORKKKKKKKK " + i);
 			}
-			else
-				DefaultColor(i);
-				
-		}
+            else
+            {
+                DefaultColor(i);
+
+            }
+
+        }
 
        
         for (int i = 0; i<=tempFrame; i++){
@@ -57,10 +63,13 @@ public class CircleSlider : MonoBehaviour
 			if(frameCubes[i].GetComponent<MeshRenderer>().material.color == HightlightMat.color){
 				//Debug.Log("There is a key at frame " + i);
 			}
-			else
-				HighlightFrame(i);
-				
-		}
+            else
+            {
+                HighlightFrame(i);
+
+            }
+
+        }
 			
 
         if (isDrag)
@@ -86,7 +95,7 @@ public class CircleSlider : MonoBehaviour
     {
         handPos = handR.transform.position;
         mousePos = Input.mousePosition;
-        Vector2 dir = handPos - handle.position;
+        Vector2 dir = mousePos - handle.position;
         //Debug.Log("OriginalDir" + dir);
         //dir = dir * 10;
         //Debug.Log("NewDir"+dir);
@@ -99,6 +108,7 @@ public class CircleSlider : MonoBehaviour
         {
             ColliderLeft.SetActive(true);
             ColliderRight.SetActive(true);
+            setText = true;
         }
 
         Quaternion r = Quaternion.AngleAxis(angle + 135f, Vector3.forward);
@@ -110,7 +120,7 @@ public class CircleSlider : MonoBehaviour
 
             fill.fillAmount = 1f - (angle / 270);
             frameNum = (int)Mathf.Round((fill.fillAmount * 23) / 1f) + 24 * LoopNum ;
-            valTxt.text = (frameNum+1).ToString();
+            if(setText) valTxt.text = (frameNum+1).ToString();
 
     }
 
@@ -158,25 +168,41 @@ public class CircleSlider : MonoBehaviour
     }
 
     private void HighlightFrame(int frameNum){
-        int tempFrame = frameNum - 24 * LoopNum;
-        tempFrame = Clamp(tempFrame);
-        frameCubes[frameNum].GetComponent<MeshRenderer>().material = FillMat;
-		//Debug.Log("Set Fill color for " + frameCubes[frameNum]);
-	}
+        if (frameNum > 23)
+        {
+            int tempFrame = frameNum - 24 * LoopNum;
+            tempFrame = Clamp(tempFrame);
+            frameCubes[tempFrame].GetComponent<MeshRenderer>().material = FillMat;
+
+        }
+        else
+            frameCubes[frameNum].GetComponent<MeshRenderer>().material = FillMat;
+    }
 	
 	public void HighlightKey(int frameNum){
-        int tempFrame = frameNum - 24 * LoopNum;
-        tempFrame = Clamp(tempFrame);
 
-        frameCubes[tempFrame].GetComponent<MeshRenderer>().material = HightlightMat;
-	}
-	
-	public void DefaultColor(int frameNum){
-        int tempFrame = frameNum - 24 * LoopNum;
-        tempFrame = Clamp(tempFrame);
-        
-        frameCubes[tempFrame].GetComponent<MeshRenderer>().material = DefaultMat;
-	}
+        if(frameNum > 23)
+        {
+            int tempFrame = frameNum - 24 * LoopNum;
+            tempFrame = Clamp(tempFrame);
+            frameCubes[tempFrame].GetComponent<MeshRenderer>().material = HightlightMat;
+
+        }
+        else
+            frameCubes[frameNum].GetComponent<MeshRenderer>().material = HightlightMat;
+    }
+
+    public void DefaultColor(int frameNum){
+        if (frameNum > 23)
+        {
+            int tempFrame = frameNum - 24 * LoopNum;
+            tempFrame = Clamp(tempFrame);
+            frameCubes[tempFrame].GetComponent<MeshRenderer>().material = DefaultMat;
+
+        }
+        else
+            frameCubes[frameNum].GetComponent<MeshRenderer>().material = DefaultMat;
+    }
 
     public Color GetColor(int frameNum)
     {
@@ -197,16 +223,23 @@ public class CircleSlider : MonoBehaviour
     public void increaseValue()
     {
         LoopNum++;
+        valTxt.text = (24 * LoopNum  + 1).ToString();
+        setText = false;
+
+
     }
     public void DecreaseValue()
     {
         LoopNum--;
+        valTxt.text = (24 * (LoopNum + 1)).ToString();
+        setText = false;
+
     }
 
     int Clamp(int n)
     {
-        if (n < 1)
-            n = 1;
+        if (n < 0)
+            n = 0;
 
         if (n > 23)
             n = 23;
