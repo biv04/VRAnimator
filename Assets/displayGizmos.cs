@@ -22,13 +22,31 @@ public class displayGizmos : MonoBehaviour
     private Vector3[] positionList = new Vector3[16];
     public float distance;
     private float currentDistance;
-    public GameObject hand;
+    public GameObject handLeft,handRight;
+    public GameObject sphere1, sphere2;
+    scale sphere1Script, sphere2Script;
+
+    float prevScale = 0;
 
 
     private void Start()
     {
-        distance = 0.2f;
-        hand = GameObject.Find("/OVRCameraRig/TrackingSpace/LeftHandAnchor/OVRHandPrefab");
+        
+        sphere1 = Instantiate(Resources.Load("SpherePrefab") as GameObject);
+        sphere2 = Instantiate(Resources.Load("SpherePrefab") as GameObject);
+
+        sphere1Script =sphere1.GetComponent<scale>();
+        sphere2Script = sphere2.GetComponent<scale>();
+
+        //sphere1 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        //sphere1.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+
+        //sphere2 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        //sphere2.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        //sphere1.transform.position = new Vector3(0, 1.5f, 0);
+        distance = 0.4f;
+        handLeft = GameObject.Find("/OVRCameraRig/TrackingSpace/LeftHandAnchor/OVRHandPrefab");
+        handRight = GameObject.Find("/OVRCameraRig/TrackingSpace/RightHandAnchor/OVRHandPrefab");
         lr = GetComponent<LineRenderer>();
         lr.widthMultiplier = 0.2f;
         lr.positionCount = lengthOfLineRenderer;
@@ -39,7 +57,7 @@ public class displayGizmos : MonoBehaviour
     void Update()
     {
 
-        currentDistance = Vector3.Distance(transform.position, hand.transform.position);
+        currentDistance = Vector3.Distance(transform.position, handLeft.transform.position);
 
         Debug.Log(currentDistance);
 
@@ -93,19 +111,48 @@ public class displayGizmos : MonoBehaviour
             positionList[15] = v3FrontTopRight;
         //positionList[16] = v3BackTopLeft;
         lr.SetPositions(positionList);
+        sphere1.transform.position = v3BackTopRight;
+        sphere2.transform.position = v3FrontBottomLeft;
+
 
 
         if (currentDistance < distance)
         {
             if (!lr.enabled)
+            {
                 lr.enabled = !lr.enabled;
+                sphere1.SetActive(true);
+                sphere2.SetActive(true);
+
+            }
             
         }
         else 
         {
             if (lr.enabled)
-            lr.enabled = !lr.enabled;
+            {
+                lr.enabled = !lr.enabled;
+                sphere1.SetActive(false);
+                sphere2.SetActive(false);
+            }
+
         }
+
+        if (sphere1Script.istouch && sphere2Script.istouch)
+        {
+
+            float m_scale = (handLeft.transform.position - handRight.transform.position).magnitude;
+            //Vector3 m_scale = handLeft.transform.position - handRight.transform.position;
+            if (prevScale == 0)
+            {
+                prevScale = m_scale;
+            }
+            float scaleDiff = m_scale - prevScale;
+            gameObject.transform.localScale += new Vector3 (scaleDiff, scaleDiff, scaleDiff);
+           
+            prevScale = m_scale;
+        }
+
     }
 
 

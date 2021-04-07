@@ -69,6 +69,7 @@ public class CubePlacer : MonoBehaviour
             child.transform.position = LargeGrid.GetPosition("L" + other.name).position;
         }
 
+        /*
         // Delete on double tap
         else if (other.transform.gameObject.name == "Hand_IndexTip" && handR.isPinch == false)
         {
@@ -80,8 +81,8 @@ public class CubePlacer : MonoBehaviour
             else
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
 
-
-        }
+      
+        }  */
 
 
 

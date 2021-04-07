@@ -49,10 +49,10 @@ public class HandGrabbing : OVRGrabber
                float other_pinchStrength = other_hand.GetFingerPinchStrength(OVRHand.HandFinger.Index);
                if(other_pinchStrength> pinchThreshhold)
                 {
-                   // Debug.Log("BothHand");
+                    Debug.Log("BothHand");
 
-                   // float m_scale = (m_hand.transform.position - other_hand.transform.position).magnitude;
-                    //m_grabbedObj.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
+                   //float m_scale = (m_hand.transform.position - other_hand.transform.position).magnitude/4;
+                   // m_grabbedObj.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
                 }
             }
 
