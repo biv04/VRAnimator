@@ -22,7 +22,7 @@ public class ButtonHit : MonoBehaviour
         Vector3 direction = transform.position - other.gameObject.transform.position;
         Debug.Log("UI Colliding Direction: " + direction);
        
-        if (other.gameObject.name == "Hand_IndexTip"  &&  (direction.y > 0))
+        if (other.gameObject.name == "Hand_IndexTip" )
         {
             buttons.SetHitImg();
             buttons.isOn = !buttons.isOn;

@@ -34,11 +34,14 @@ public class CircleSliderHandle : MonoBehaviour
         {
             ColliderLeft.SetActive(false);
         }
+
+        if (handR.isPinch == false)
+            circleSlider.isDrag = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (handR.isPinch)
+        if (other.gameObject.name == "Hand_IndexTip" && handR.isPinch)
         {
             circleSlider.isDrag = true;
             isMove = true;
@@ -68,7 +71,7 @@ public class CircleSliderHandle : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (handR.isPinch)
+        if (other.gameObject.name == "Hand_IndexTip" && handR.isPinch)
         {
             circleSlider.isDrag = true;
             isMove = true;
