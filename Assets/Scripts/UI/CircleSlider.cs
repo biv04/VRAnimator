@@ -236,6 +236,7 @@ public class CircleSlider : MonoBehaviour
 
     }
 
+
     int Clamp(int n)
     {
         if (n < 0)

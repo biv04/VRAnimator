@@ -33,6 +33,11 @@ public class PlaneControl : MonoBehaviour
             TranslateThis();
         }
 
+        else
+        {
+            EnableOffset();
+        }
+
         prevX = handR.transform.localPosition.x;
         prevY = handR.transform.localPosition.y;
         prevZ = handR.transform.localPosition.z;
@@ -98,5 +103,14 @@ public class PlaneControl : MonoBehaviour
         GameObject[] varGameObject = GameObject.FindGameObjectsWithTag("joint");
         foreach(GameObject joint in varGameObject)
             joint.GetComponent<Offset>().enabled = false;
+    }
+
+    void EnableOffset()
+    {
+
+        GameObject[] varGameObject = GameObject.FindGameObjectsWithTag("joint");
+        foreach(GameObject joint in varGameObject)
+            joint.GetComponent<Offset>().enabled = true;
+
     }
 }

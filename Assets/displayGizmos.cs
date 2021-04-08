@@ -34,8 +34,10 @@ public class displayGizmos : MonoBehaviour
         
         sphere1 = Instantiate(Resources.Load("SpherePrefab") as GameObject);
         sphere2 = Instantiate(Resources.Load("SpherePrefab") as GameObject);
+        sphere1.transform.SetParent(gameObject.transform);
+        sphere2.transform.SetParent(gameObject.transform);
 
-        sphere1Script =sphere1.GetComponent<scale>();
+        sphere1Script = sphere1.GetComponent<scale>();
         sphere2Script = sphere2.GetComponent<scale>();
 
         //sphere1 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -59,7 +61,7 @@ public class displayGizmos : MonoBehaviour
 
         currentDistance = Vector3.Distance(transform.position, handLeft.transform.position);
 
-        Debug.Log(currentDistance);
+       // Debug.Log(currentDistance);
 
             Bounds bounds = GetComponent<MeshFilter>().sharedMesh.bounds;
 
@@ -153,6 +155,11 @@ public class displayGizmos : MonoBehaviour
             prevScale = m_scale;
         }
 
+        if (!gameObject.activeSelf)
+        {
+           sphere1.SetActive(false);
+            sphere2.SetActive(false);
+        }
     }
 
 

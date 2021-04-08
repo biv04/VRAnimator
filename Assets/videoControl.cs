@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class videoControl : MonoBehaviour
 {
     VideoPlayer video;
-    public Slider slider;
+    //public Slider slider;
+    public CircleSlider slider;
 
     private void Start()
     {
@@ -16,7 +17,7 @@ public class videoControl : MonoBehaviour
 
     private void Update()
     {
-        video.frame = (long)slider.value;
+        video.frame = (long)slider.frameNum;
         Debug.Log("Frame: " + video.frame);
     }
 }

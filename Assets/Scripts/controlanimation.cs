@@ -44,6 +44,8 @@ public class controlanimation : MonoBehaviour
 
     int jointIndex = 0;
     GameObject obj;
+
+    public int maxFrame;
     // private Joint LeftArmJoint, RightArmJoint, RightLegJoint, LeftLegJoint;;
 
 
@@ -272,6 +274,7 @@ public class controlanimation : MonoBehaviour
 
 
         SetCurve();
+        if (num > maxFrame) maxFrame = num;
 
 
     }

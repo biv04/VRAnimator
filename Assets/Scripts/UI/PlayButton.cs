@@ -10,6 +10,7 @@ public class PlayButton : MonoBehaviour
     public VideoPlayer videoPlayer;
     //public Slider timeSlider;
     public CircleSlider circleSlider;
+    public GameObject handle;
     public GameObject btnPause;
     public GameObject btnPlay;
     public bool isPlaying;
@@ -24,14 +25,20 @@ public class PlayButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Get current max frame
         if (isPlaying)
         {
-            if (circleSlider.frameNum == 24) circleSlider.frameNum = 0;
+            if (circleSlider.frameNum == controlanimation.maxFrame) circleSlider.frameNum = 0;
             else circleSlider.frameNum += 1;
+           // handle.SetActive(false);
         }
 
         else
+        {
             controlanimation.isSet = true;
+            handle.SetActive(true);
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)
