@@ -9,27 +9,32 @@ public class CircleSlider : MonoBehaviour
     [SerializeField] Image fill;
     [SerializeField] Text valTxt, jointName;
 
-    public int LoopNum ;
+    public int LoopNum;
     public int frameNum;
 
     public HandGrabbing handR;
+    public HandGrabbing handL;
+    public HandGrabbing currentHand;
     public GameObject player;
 
     Vector3 mousePos;
-    Vector3 handPos;
+    // Vector3 handPosLeft;
+    // Vector3 handPosright;
+    Vector3 currentHandPosition;
 
     public bool isDrag;
     public GameObject framePrefab;
     public GameObject parent;
 
     public GameObject[] frameCubes;
-	public Material DefaultMat, FillMat, HightlightMat;
+    public Material DefaultMat, FillMat, HightlightMat;
 
     public GameObject ColliderLeft, ColliderRight;
 
     bool setText;
     private void Start()
     {
+        // currentHand = handL;
         LoopNum = 0;
         frameCubes = new GameObject[24];
         CreateFramesAroundPoint(24, gameObject.transform.position, 0.085f);
@@ -43,12 +48,13 @@ public class CircleSlider : MonoBehaviour
         tempFrame = Clamp(tempFrame);
         Debug.Log("TempFrameNum: " + tempFrame + " LoopNum: " + LoopNum);
 
-        for (int i = tempFrame; i<24; i++){
+        for (int i = tempFrame; i < 24; i++)
+        {
 
-            if (frameCubes[i].GetComponent<MeshRenderer>().material.color  == HightlightMat.color)
+            if (frameCubes[i].GetComponent<MeshRenderer>().material.color == HightlightMat.color)
             {
-				// Debug.Log("PLEASEEEE WORKKKKKKKK " + i);
-			}
+                // Debug.Log("PLEASEEEE WORKKKKKKKK " + i);
+            }
             else
             {
                 DefaultColor(i);
@@ -57,12 +63,14 @@ public class CircleSlider : MonoBehaviour
 
         }
 
-       
-        for (int i = 0; i<=tempFrame; i++){
 
-			if(frameCubes[i].GetComponent<MeshRenderer>().material.color == HightlightMat.color){
-				//Debug.Log("There is a key at frame " + i);
-			}
+        for (int i = 0; i <= tempFrame; i++)
+        {
+
+            if (frameCubes[i].GetComponent<MeshRenderer>().material.color == HightlightMat.color)
+            {
+                //Debug.Log("There is a key at frame " + i);
+            }
             else
             {
                 HighlightFrame(i);
@@ -70,15 +78,15 @@ public class CircleSlider : MonoBehaviour
             }
 
         }
-			
+
 
         if (isDrag)
         {
             onHandleDrag();
-			
+
         }
 
-        if (handR.isPinch == false)
+        if (currentHand.isPinch == false)
             isDrag = false;
 
         //Follow player
@@ -87,15 +95,17 @@ public class CircleSlider : MonoBehaviour
         {
             this.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z + 200);
         }
-		
+
 
     }
 
     public void onHandleDrag()
     {
-        handPos = handR.transform.position;
+        // handPosLeft = handL.transform.position;
+        //handPosright = handR.transform.position;
+        currentHandPosition = currentHand.transform.position;
         mousePos = Input.mousePosition;
-        Vector2 dir = handPos - handle.position;
+        Vector2 dir = currentHandPosition - handle.position;
         //Debug.Log("OriginalDir" + dir);
         //dir = dir * 10;
         //Debug.Log("NewDir"+dir);
@@ -113,14 +123,14 @@ public class CircleSlider : MonoBehaviour
 
         Quaternion r = Quaternion.AngleAxis(angle + 135f, Vector3.forward);
 
-            handle.localRotation = r;
-            //Debug.Log("ANGLE: " + angle);
+        handle.localRotation = r;
+        //Debug.Log("ANGLE: " + angle);
 
-            angle = ((angle >= 315) ? (angle - 360) : angle) + 45;
+        angle = ((angle >= 315) ? (angle - 360) : angle) + 45;
 
-            fill.fillAmount = 1f - (angle / 270);
-            frameNum = (int)Mathf.Round((fill.fillAmount * 23) / 1f) + 24 * LoopNum ;
-            if(setText) valTxt.text = (frameNum+1).ToString();
+        fill.fillAmount = 1f - (angle / 270);
+        frameNum = (int)Mathf.Round((fill.fillAmount * 23) / 1f) + 24 * LoopNum;
+        if (setText) valTxt.text = (frameNum + 1).ToString();
 
     }
 
@@ -133,27 +143,28 @@ public class CircleSlider : MonoBehaviour
 
 
             /* Distance around the circle */
-            var radians = 1.5f * Mathf.PI / num * i - Mathf.PI/4;
-			//Debug.Log("FrameNum: " + i + "Rad: " + radians);
-			 if(i == 12){
+            var radians = 1.5f * Mathf.PI / num * i - Mathf.PI / 4;
+            //Debug.Log("FrameNum: " + i + "Rad: " + radians);
+            if (i == 12)
+            {
 
-				radians = radians + 0.01f;
-				
-			}
-			
+                radians = radians + 0.01f;
+
+            }
+
             /* Get the vector direction */
             var vertrical = Mathf.Sin(radians);
             var horizontal = Mathf.Cos(radians);
 
             var spawnDir = new Vector3(horizontal, vertrical, 0);
-		   
+
             /* Get the spawn position */
             var spawnPos = point + spawnDir * radius; // Radius is just the distance away from the point
-			
-           
-			/* Now spawn */
+
+
+            /* Now spawn */
             var cube = Instantiate(framePrefab, spawnPos, Quaternion.identity) as GameObject;
-			
+
             /* Rotate the enemy to face towards player */
             cube.transform.LookAt(point);
             cube.transform.name = "Frame" + i;
@@ -161,13 +172,14 @@ public class CircleSlider : MonoBehaviour
 
             /* Adjust height */
             //cube.transform.Translate(new Vector3(0, cube.transform.localScale.y / 2, 0));
-            
-			
-			frameCubes[i] = cube;
+
+
+            frameCubes[i] = cube;
         }
     }
 
-    private void HighlightFrame(int frameNum){
+    private void HighlightFrame(int frameNum)
+    {
         if (frameNum > 23)
         {
             int tempFrame = frameNum - 24 * LoopNum;
@@ -178,10 +190,11 @@ public class CircleSlider : MonoBehaviour
         else
             frameCubes[frameNum].GetComponent<MeshRenderer>().material = FillMat;
     }
-	
-	public void HighlightKey(int frameNum){
 
-        if(frameNum > 23)
+    public void HighlightKey(int frameNum)
+    {
+
+        if (frameNum > 23)
         {
             int tempFrame = frameNum - 24 * LoopNum;
             tempFrame = Clamp(tempFrame);
@@ -192,7 +205,8 @@ public class CircleSlider : MonoBehaviour
             frameCubes[frameNum].GetComponent<MeshRenderer>().material = HightlightMat;
     }
 
-    public void DefaultColor(int frameNum){
+    public void DefaultColor(int frameNum)
+    {
         if (frameNum > 23)
         {
             int tempFrame = frameNum - 24 * LoopNum;
@@ -223,7 +237,7 @@ public class CircleSlider : MonoBehaviour
     public void increaseValue()
     {
         LoopNum++;
-        valTxt.text = (24 * LoopNum  + 1).ToString();
+        valTxt.text = (24 * LoopNum + 1).ToString();
         setText = false;
 
 
