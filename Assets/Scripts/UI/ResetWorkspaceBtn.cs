@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class ResetWorkspaceBtn : MonoBehaviour
 {
-    public GameObject WorkSpace;
-    Vector3 originalPos;
-    Quaternion originalRot;
+    public PlaneControl WorkSpace;
+
     void Start()
     {
-        originalPos = WorkSpace.transform.position;
-        originalRot = WorkSpace.transform.rotation;
+      
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        WorkSpace.transform.position = originalPos;
-        WorkSpace.transform.rotation = originalRot;
+        WorkSpace.Reset();
     }
 }

@@ -8,10 +8,11 @@ public class CharacterToggle : MonoBehaviour
 	 public int selectedNum;
 	 int currNum = 0;
 	public bool debug;
-    private void Start()
+    private void Awake()
     {
 		SetModel(currNum);
 	}
+
     void Update(){
         if (debug)
         {

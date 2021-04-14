@@ -28,9 +28,8 @@ public class Offset : MonoBehaviour
 
     void Update()
     {
-		
-		if(plane.GrabThis == false){
-			 //Store new Position & rotation
+				
+        //Store new Position & rotation
         newPosition = sObject.position;
         //newRotate = sObject.rotation;
 
@@ -48,7 +47,7 @@ public class Offset : MonoBehaviour
 		}
         //Set oldPos to current position
         oldPosition = sObject.position;
-		}
+
        
 
 
@@ -58,4 +57,10 @@ public class Offset : MonoBehaviour
         lObject[objNum].localPosition = sObject.transform.localPosition;
     */
 	}
+
+    public void Reset()
+    {
+        oldPosition = sObject.position;
+        oldRotate = sObject.rotation;
+    }
 }

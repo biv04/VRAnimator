@@ -25,7 +25,7 @@ public class PlaneControl : MonoBehaviour
     void Update()
     {
 
-        
+
         if (GrabThis)
         {
             DisableOffset();
@@ -34,9 +34,7 @@ public class PlaneControl : MonoBehaviour
         }
 
         else
-        {
             EnableOffset();
-        }
 
         prevX = handR.transform.localPosition.x;
         prevY = handR.transform.localPosition.y;
@@ -93,9 +91,14 @@ public class PlaneControl : MonoBehaviour
     }
     public void Reset()
     {
-        Debug.Log("reset");
         sObject.transform.position = originalPos;
         sObject.transform.rotation = originalRotate;
+
+        GameObject[] varGameObject = GameObject.FindGameObjectsWithTag("joint");
+        foreach (GameObject joint in varGameObject)
+        {
+            joint.GetComponent<Offset>().Reset();
+        }
     }
 
     void DisableOffset()
@@ -110,7 +113,13 @@ public class PlaneControl : MonoBehaviour
 
         GameObject[] varGameObject = GameObject.FindGameObjectsWithTag("joint");
         foreach(GameObject joint in varGameObject)
-            joint.GetComponent<Offset>().enabled = true;
+        {
+            if (joint.GetComponent<Offset>().enabled ==  false)
+            {
+                joint.GetComponent<Offset>().enabled = true;
+                joint.GetComponent<Offset>().Reset();
+            }
+        }
 
     }
 }
