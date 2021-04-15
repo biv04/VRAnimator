@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CubePlacer : MonoBehaviour
-{
-    private Grid grid;
-    private Vector3 pOffset, rOffset;
-    private float mZCoord;
+{ 
 
     public LargeGrid LargeGrid;
     public GameObject objPrefab;
     private GameObject child;
 
     public HandGrabbing handR;
+
+    GameObject parent;
+    bool isAttach;
     
     Color originalColor;
    
 
     private void Awake()
     {
-        grid = FindObjectOfType<Grid>();
         LargeGrid = FindObjectOfType<LargeGrid>();
         originalColor = gameObject.GetComponent<Renderer>().material.color;
         handR = (HandGrabbing) GameObject.FindObjectOfType(typeof(HandGrabbing));
@@ -29,17 +28,22 @@ public class CubePlacer : MonoBehaviour
     {
         if(gameObject.GetComponent<Renderer>().material.color == Color.red)
         {
-            StartCoroutine(RestoreColor(0.5f));
+            StartCoroutine(RestoreColor(0.2f));
 
         }
         if (child)
         {
-            Debug.Log("Has Child");
             //child.transform.position = gameObject.transform.position - pOffset;
             //child.transform.localPosition = gameObject.transform.localPosition - pOffset;
             child.transform.localRotation = gameObject.transform.localRotation;
             child.transform.localScale = gameObject.transform.localScale * 8f;
 
+        }
+
+        if (isAttach)
+        {
+            Debug.Log("ParentName: " + parent.name);
+            gameObject.transform.position = parent.transform.position;
         }
 
     }
@@ -53,36 +57,46 @@ public class CubePlacer : MonoBehaviour
             gameObject.transform.position = other.transform.position;
             Vector3 eulerRotation = transform.rotation.eulerAngles;
             gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-            Debug.Log("Pos:" + other.name);
+
             child = LargeGrid.Spawnfile("L" + other.name, objPrefab);
 
-            pOffset = gameObject.transform.position - child.transform.position;
+            //pOffset = gameObject.transform.position - child.transform.position;
             // rOffset = gameObject.transform.localRotation;
 
             Vector3 temp = gameObject.transform.position;
             gameObject.transform.parent = null;
             gameObject.transform.position = temp;
+
+            parent = other.gameObject;
+            isAttach = true;
         }
 
         else if (other.CompareTag("Indicator"))
         {
             child.transform.position = LargeGrid.GetPosition("L" + other.name).position;
+
+            parent = other.gameObject;
+            isAttach = true;
+
         }
 
-       
+
         // Delete on double tap
         else if (other.transform.gameObject.name == "Hand_IndexTip" && handR.isPinch == false)
         {
             if (gameObject.GetComponent<Renderer>().material.color == Color.red)
             {
-                Debug.Log("GameObject Delete: " + gameObject.name);
                 gameObject.SetActive(false);
+                GameObject.Destroy(child);
             }
             else
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
 
-      
-        }  
+
+        }
+
+        else
+            isAttach = false;
 
 
 

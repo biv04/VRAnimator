@@ -6,6 +6,7 @@ public class GridManager : MonoBehaviour
 {
 
     public GameObject indicator;
+    public GameObject plane;
     public float[,] Grid;
 
     public int vertical, horizontal;
@@ -28,9 +29,16 @@ public class GridManager : MonoBehaviour
             }
         }
         gameObject.transform.localScale = new Vector3(0.16615f, 0.16615f, 0.16615f);
-        gameObject.transform.position = new Vector3(-0.063f, -0.516f, 0.139f);
+        gameObject.transform.position = plane.transform.position;
     }
 
+    private void Update()
+    {
+        gameObject.transform.position = plane.transform.position;
+        gameObject.transform.localRotation = plane.transform.localRotation;
+        transform.Rotate(0,180, 0);
+
+    }
     void Spawnfile(int x, int y, float value)
     {
         Vector3 pos = new Vector3(x - (horizontal - 0.5f), 0.05f, y - (vertical - 0.1f));

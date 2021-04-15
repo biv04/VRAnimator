@@ -8,6 +8,7 @@ public class DecoButton : MonoBehaviour
     public GameObject Prefabs;
     public GameObject grid;
     public GameObject spawnPoint;
+    GameObject plane;
 
 
     bool isCreating;
@@ -16,7 +17,7 @@ public class DecoButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        plane = GameObject.Find("SmallPlane");
     }
 
     // Update is called once per frame

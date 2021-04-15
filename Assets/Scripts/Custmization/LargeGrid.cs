@@ -51,7 +51,10 @@ public class LargeGrid : MonoBehaviour
         prevObj = Instantiate(obj, target.transform.position, Quaternion.identity);
         prevObj.transform.localScale = new Vector3(4f, 4f, 4f);       
         prevObj.transform.SetParent(target.transform);
-        Debug.Log("Spawn Large Obj");
+        foreach (Transform child in prevObj.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
 
 
         return prevObj;
@@ -68,6 +71,17 @@ public class LargeGrid : MonoBehaviour
         Transform position = GameObject.Find(name).transform;
 
         return position;
+    }
+
+    public void DeleteChild(string parentName, string objName)
+    {
+        Transform parent = GameObject.Find(parentName).transform;
+
+        foreach (Transform child in parent)
+        {
+            if(child.name == objName)
+                GameObject.Destroy(child.gameObject);
+        }
     }
 
 }
