@@ -20,11 +20,12 @@ public class controlanimation : MonoBehaviour
 
 
     // rotation //
+    /*
     Dictionary<int, float> prevRotx = new Dictionary<int, float>();
     Dictionary<int, float> prevRoty = new Dictionary<int, float>();
     Dictionary<int, float> prevRotz = new Dictionary<int, float>();
     // end rotation //
-
+    */
     private GameObject arm;
     public HandGrabbing handR;
     public Material defaultMat, highlightMat;
@@ -134,6 +135,7 @@ public class controlanimation : MonoBehaviour
 
             clip.SetCurve(joints[i].Path, typeof(Transform), "localPosition.z", joints[i].CurveZ);
 
+            /*
             // start rotation
             clip.SetCurve(joints[i].Path, typeof(Transform), "localRotation.x", joints[i].CurveRotX);
 
@@ -141,6 +143,7 @@ public class controlanimation : MonoBehaviour
 
             clip.SetCurve(joints[i].Path, typeof(Transform), "localRotation.z", joints[i].CurveRotZ);
             // end rotation
+            */
         }
         
         clip.legacy = true;
@@ -220,11 +223,11 @@ public class controlanimation : MonoBehaviour
             tempPos = new Vector3(joints[i].CurveX.Evaluate(time), joints[i].CurveY.Evaluate(time), joints[i].CurveZ.Evaluate(time));
             //rotation
            // tempRot = new Quaternion(joints[i].CurveRotX.Evaluate(time), joints[i].CurveRotY.Evaluate(time), joints[i].CurveRotZ.Evaluate(time),0);
-            tempRot = new Vector3(joints[i].CurveRotX.Evaluate(time), joints[i].CurveRotY.Evaluate(time), joints[i].CurveRotZ.Evaluate(time));
+           // tempRot = new Vector3(joints[i].CurveRotX.Evaluate(time), joints[i].CurveRotY.Evaluate(time), joints[i].CurveRotZ.Evaluate(time));
 
             //end rotation
             GameObjectJoints[i].transform.localPosition = tempPos;
-            GameObjectJoints[i].transform.localEulerAngles = tempRot;
+            //GameObjectJoints[i].transform.localEulerAngles = tempRot;
         }
 
         // Ines try end
@@ -242,22 +245,30 @@ public class controlanimation : MonoBehaviour
         positiony = arm.transform.localPosition.y;
         positionz = arm.transform.localPosition.z;
         // Save the current rotation
+        /*
         rotationx = arm.transform.localEulerAngles.x;
         rotationy = arm.transform.localEulerAngles.y;
         rotationz = arm.transform.localEulerAngles.z;
-
+        */
         //If the current frame has a previous position
+        /*
         if (prevPosx.ContainsKey(num) || prevRotx.ContainsKey(num))
         {
-            //If position changed
-            if (prevPosx[num] != positionx || prevPosy[num] != positiony || prevPosz[num] != positionz
+           
+            if (prevPosx[num] != positionx || prevPosy[num] != positiony || prevPosz[num] != positionz//
                 || prevRotx[num] != rotationx || prevRoty[num] != rotationy || prevRotz[num] != rotationz)
-            {
+           */
+        if (prevPosx.ContainsKey(num))
+        {
+            //If position changed
+            if (prevPosx[num] != positionx || prevPosy[num] != positiony || prevPosz[num] != positionz)
+             {
                 //Replace key if there's a key
                 if (joints[jointIndex].CurveX.AddKey(time, positionx) == -1)
                     ReplaceKey(time);
 
-                AddKey(num, new Vector3(positionx, positiony, positionz), new Vector3(rotationx, rotationy, rotationz));
+                //AddKey(num, new Vector3(positionx, positiony, positionz), new Vector3(rotationx, rotationy, rotationz));
+                AddKey(num, new Vector3(positionx, positiony, positionz));
 
             }
         }
@@ -267,9 +278,9 @@ public class controlanimation : MonoBehaviour
             prevPosx.Add(num, positionx);
             prevPosy.Add(num, positiony);
             prevPosz.Add(num, positionz);
-            prevRotx.Add(num, rotationx);
-            prevRoty.Add(num, rotationy);
-            prevRotz.Add(num, rotationz);
+           // prevRotx.Add(num, rotationx);
+           // prevRoty.Add(num, rotationy);
+           // prevRotz.Add(num, rotationz);
         }
 
 
@@ -320,10 +331,11 @@ public class controlanimation : MonoBehaviour
 
 
                 // rotation
+                /*
                 joints[jointIndex].CurveRotX.RemoveKey(CurrentCurveIndex);
                 joints[jointIndex].CurveRotY.RemoveKey(CurrentCurveIndex);
                 joints[jointIndex].CurveRotZ.RemoveKey(CurrentCurveIndex);
-
+                */
                 Debug.Log("After deletion: " + joints[jointIndex].CurveX.length);
       
 
@@ -343,7 +355,8 @@ public class controlanimation : MonoBehaviour
     public void PasteKey(int n)
     {
         float time = n / 24f;
-        AddKey(n, copiedPos, copiedRot);
+        AddKey(n, copiedPos);
+       // AddKey(n, copiedPos, copiedRot);
         SetCurve();
 
     }
@@ -377,11 +390,13 @@ public class controlanimation : MonoBehaviour
             clip.SetCurve(joints[i].Path, typeof(Transform), "localPosition.z", joints[i].CurveZ);
 
             //rotation
+            /*
             clip.SetCurve(joints[i].Path, typeof(Transform), "localRotation.x", joints[i].CurveRotX);
 
             clip.SetCurve(joints[i].Path, typeof(Transform), "localRotation.y", joints[i].CurveRotY);
 
             clip.SetCurve(joints[i].Path, typeof(Transform), "localRotation.z", joints[i].CurveRotZ);
+            */
         }
 
         anim.AddClip(clip, clip.name);
@@ -403,14 +418,33 @@ public class controlanimation : MonoBehaviour
 
 
         // rotation
+        /*
         joints[jointIndex].CurveRotX.RemoveKey(CurrentCurveIndex);
         joints[jointIndex].CurveRotY.RemoveKey(CurrentCurveIndex);
         joints[jointIndex].CurveRotZ.RemoveKey(CurrentCurveIndex);
-
+        */
         Debug.Log("Replace Key at Index " + CurrentCurveIndex);
     }
 
-    void AddKey( int num, Vector3 Pos, Vector3 Rot)
+    void AddKey( int num, Vector3 Pos)
+    {
+        float time = num / 24f;
+        //Add key
+        joints[jointIndex].CurveX.AddKey(time, Pos.x);
+        joints[jointIndex].CurveY.AddKey(time, Pos.y);
+        joints[jointIndex].CurveZ.AddKey(time, Pos.z);
+
+        prevPosx.Remove(num);
+        prevPosy.Remove(num);
+        prevPosz.Remove(num);
+  
+        prevPosx.Add(num, Pos.x);
+        prevPosy.Add(num, Pos.y);
+        prevPosz.Add(num, Pos.z);
+      
+    }
+
+    void AddKey(int num, Vector3 Pos, Vector3 Rot)
     {
         float time = num / 24f;
         //Add key
@@ -419,29 +453,31 @@ public class controlanimation : MonoBehaviour
         joints[jointIndex].CurveZ.AddKey(time, Pos.z);
 
         //Add rotation key
+        /*
         joints[jointIndex].CurveRotX.AddKey(time, Rot.x);
         joints[jointIndex].CurveRotY.AddKey(time, Rot.y);
         joints[jointIndex].CurveRotZ.AddKey(time, Rot.z);
+        */
 
         prevPosx.Remove(num);
         prevPosy.Remove(num);
         prevPosz.Remove(num);
         // rotation
+        /*
         prevRotx.Remove(num);
         prevRoty.Remove(num);
         prevRotz.Remove(num);
-
+        */
         prevPosx.Add(num, Pos.x);
         prevPosy.Add(num, Pos.y);
         prevPosz.Add(num, Pos.z);
         // rotation
+        /*
         prevRotx.Add(num, Rot.x);
         prevRoty.Add(num, Rot.y);
         prevRotz.Add(num, Rot.z);
-
+        */
     }
-
-
     public List<Joint> savedJoints()
     {
         return joints;

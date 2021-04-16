@@ -8,6 +8,7 @@ public class Buttons : MonoBehaviour
     public bool isOn;
     public GameObject[] Canvas;
     public Sprite defaultImg, hoverImg, hitImage;
+    public bool isImage;
 
     SpriteRenderer sr;
 

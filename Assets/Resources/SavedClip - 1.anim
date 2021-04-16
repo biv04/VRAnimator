@@ -20,7 +20,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -0.7861469, y: 1.3767356, z: -0.04433792}
+        value: {x: -0.36938342, y: 0.7882389, z: -0.048787385}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -30,13 +30,13 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_L/LeftArmJoint
+    path: /platform/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_L/LeftArmJoint
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.78614706, y: 1.3767356, z: -0.044337995}
+        value: {x: 0.30883586, y: 0.5560179, z: 0.025642693}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -46,7 +46,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_R/RightArmJoint
+    path: /platform/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/UpperConstraints/ArmIK_R/RightArmJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -62,7 +62,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
+    path: /platform/FullAvatar/LowerConstraints/LegIK_R/RightLegJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -78,13 +78,13 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
+    path: /platform/FullAvatar/LowerConstraints/LegIK_L/LeftLegJoint
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -0.1608513, y: 7.105427e-17, z: 3.9510244e-16}
+        value: {x: -0.16085212, y: -0.000008181756, z: -0.0000021774322}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -94,7 +94,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/Spine2_M/Chest_M/NeckJoint
+    path: /platform/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint/Spine2_M/Chest_M/NeckJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -110,7 +110,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint
+    path: /platform/FullAvatar/Group/Main/DeformationSystem/Root_M/SpineJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -126,7 +126,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_L/LeftKneeJoint
+    path: /platform/FullAvatar/LowerConstraints/LegIK_L/LeftKneeJoint
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -142,7 +142,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: /SmallPlane/FullAvatar/LowerConstraints/LegIK_R/RightKneeJoint
+    path: /platform/FullAvatar/LowerConstraints/LegIK_R/RightKneeJoint
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []

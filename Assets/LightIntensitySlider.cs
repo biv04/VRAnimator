@@ -18,8 +18,8 @@ public class LightIntensitySlider : MonoBehaviour
 
     private void Start()
     {
-        maxX = 30;
-        minX = -25;
+        maxX = 35;
+        minX = -32;
         length = maxX - minX;
     }
 

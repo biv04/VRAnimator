@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonHit : MonoBehaviour
 {
     public Buttons buttons;
+    private Image Image;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (buttons.isImage)
+            Image = gameObject.GetComponentInParent<Image>();
     }
 
     // Update is called once per frame
@@ -19,12 +23,15 @@ public class ButtonHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Vector3 direction = transform.position - other.gameObject.transform.position;
-        Debug.Log("UI Colliding Direction: " + direction);
        
         if (other.gameObject.name == "Hand_IndexTip" )
         {
-            buttons.SetHitImg();
+            if (buttons.isImage == false) buttons.SetHitImg();
+            else
+            {
+                Image.color = new Color(0,0,0, 0.8f);
+
+            }
             buttons.isOn = !buttons.isOn;
         }
 
@@ -33,9 +40,10 @@ public class ButtonHit : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        buttons.SetDefaultImg();
-       
+        if (buttons.isImage == false) buttons.SetDefaultImg();
+        else
+            Image.color = new Color(0, 0, 0, 0.5f);
     }
 
-    
+ 
 }

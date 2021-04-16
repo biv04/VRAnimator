@@ -30,12 +30,12 @@ public class PlayButton : MonoBehaviour
         {
             if (circleSlider.frameNum == controlanimation.maxFrame) circleSlider.frameNum = 0;
             else circleSlider.frameNum += 1;
-           // handle.SetActive(false);
+
+            // handle.SetActive(false);
         }
 
         else
         {
-            controlanimation.isSet = true;
             handle.SetActive(true);
 
         }
@@ -43,22 +43,26 @@ public class PlayButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        isPlaying = !isPlaying;
-
-        if (isPlaying)
+        if(other.gameObject.name == "Hand_IndexTip")
         {
-            controlanimation.play();
-            btnPause.SetActive(true);
-            btnPlay.SetActive(false);
-        }
+            isPlaying = !isPlaying;
 
-        if (!isPlaying)
-        {
-            //videoPlayer.Pause();
-            controlanimation.Stop();
-            btnPause.SetActive(false);
-            btnPlay.SetActive(true);
+            if (isPlaying)
+            {
+                controlanimation.play();
+                btnPause.SetActive(true);
+                btnPlay.SetActive(false);
+            }
+
+            if (!isPlaying)
+            {
+                //videoPlayer.Pause();
+                controlanimation.Stop();
+                btnPause.SetActive(false);
+                btnPlay.SetActive(true);
+            }
         }
+      
 
     }
 }

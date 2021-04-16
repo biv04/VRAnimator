@@ -25,9 +25,9 @@ public class DecoButton : MonoBehaviour
     {
         if (isCreating)
         {
+
             GameObject newItem = Instantiate(Prefabs, spawnPoint.transform.position, Quaternion.identity);
             isCreating = false;
-           
         } 
     }
 

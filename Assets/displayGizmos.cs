@@ -31,8 +31,8 @@ public class displayGizmos : MonoBehaviour
 
     private float originalScale;
 
-    public GameObject myCanvas;
-    public TextMeshProUGUI scaleNum;
+    private GameObject myCanvas;
+    private TextMeshProUGUI scaleNum;
 
 
     float prevScale = 0;
@@ -43,6 +43,10 @@ public class displayGizmos : MonoBehaviour
 
         sphere1 = Instantiate(Resources.Load("SpherePrefab") as GameObject);
         sphere2 = Instantiate(Resources.Load("SpherePrefab") as GameObject);
+        myCanvas = Instantiate(Resources.Load("ScaleCanvas") as GameObject);
+        scaleNum = myCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        myCanvas.transform.SetParent(gameObject.transform);
+
         sphere1.transform.SetParent(gameObject.transform);
         sphere2.transform.SetParent(gameObject.transform);
 
@@ -63,8 +67,7 @@ public class displayGizmos : MonoBehaviour
         lr.positionCount = lengthOfLineRenderer;
         positionList = new Vector3[lengthOfLineRenderer];
 
-        myCanvas = GameObject.Find("/Canvas");
-        scaleNum = GameObject.Find("/Canvas/Text").GetComponent<TextMeshProUGUI>();
+       
 
         originalScale = gameObject.transform.localScale.x;
 
@@ -132,7 +135,8 @@ public class displayGizmos : MonoBehaviour
         sphere1.transform.position = v3BackTopRight;
         sphere2.transform.position = v3FrontBottomLeft;
 
-        myCanvas.transform.position = this.transform.position + new Vector3(0f, 0.12f, 0f);
+        
+        myCanvas.transform.position = this.transform.position + new Vector3(0f, 0.08f * (this.transform.localScale.x / originalScale), 0f);
         //scaleNum.text = this.transform.localScale.x.ToString();
         scaleNum.text = (this.transform.localScale.x / originalScale).ToString("f1") + " x";
 

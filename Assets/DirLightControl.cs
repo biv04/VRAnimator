@@ -53,8 +53,8 @@ public class DirLightControl : MonoBehaviour
 
 
        //float delta = handR.transform.localPosition.x - prevX;
-       gameObject.transform.Rotate(deltaY * 360, 0, deltaX * 360);
-       DirectionalLight.transform.Rotate(deltaY * 360, 0, deltaX * 360);
+       gameObject.transform.Rotate(0, -deltaY * 360, deltaX * 360);
+       DirectionalLight.transform.Rotate(0, -deltaY * 360, deltaX * 360);
 
        Debug.Log("deltaX = " + deltaX);
         Debug.Log("prevX = " + prevX);

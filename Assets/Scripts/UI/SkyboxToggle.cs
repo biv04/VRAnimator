@@ -10,10 +10,13 @@ public class SkyboxToggle : MonoBehaviour
 	int numOfChildren;
 	float exposure;
 	float duration = 15f;
+	public GameObject workspace;
+	private Material workspaceRing;
 
     // Start is called before the first frame update
     void Start()
     {
+		workspaceRing = workspace.GetComponent<MeshRenderer>().materials[1];
 		numOfChildren = environment.childCount;
         RenderSettings.skybox = skyBox;
 		RenderSettings.skybox.SetFloat("_Exposure", exposure);
@@ -37,6 +40,25 @@ public class SkyboxToggle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("space"))
+        {
+			if (!isOn)
+			{
+				//Fade in
+				StartCoroutine(FadeIn());
+				StartCoroutine(ShowObjects());
+				isOn = true;
+			}
+
+			else
+			{
+				//Fade out
+				StartCoroutine(FadeOut());
+				StartCoroutine(HideObjects());
+				isOn = false;
+
+			}
+		}
 		DynamicGI.UpdateEnvironment();
 
 
@@ -49,6 +71,7 @@ public class SkyboxToggle : MonoBehaviour
 			RenderSettings.skybox.SetFloat("_Exposure", exposure);
 
 		}
+
 		
 	  }
 
@@ -72,6 +95,10 @@ public class SkyboxToggle : MonoBehaviour
 				child.GetComponent<MeshRenderer>().materials[j].color = c;
 				}
 
+				Color ringC = workspaceRing.color;
+				ringC.a = f;
+				workspaceRing.color = ringC;
+
 			}
 			yield return new WaitForSeconds(0.02f);
 	
@@ -88,8 +115,9 @@ public class SkyboxToggle : MonoBehaviour
 				c.a = f;
 				child.GetComponent<MeshRenderer>().materials[j].color = c;
 				}
-				
-				
+				Color ringC = workspaceRing.color;
+				ringC.a = f;
+				workspaceRing.color = ringC;
 			}
 			yield return new WaitForSeconds(0.02f);
 
